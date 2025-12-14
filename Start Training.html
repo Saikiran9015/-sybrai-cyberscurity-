@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Security Awareness Training - Sybrai</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+/* --- VARIABLES --- */
+:root {
+    --primary: #2b4ecb;       /* Royal Blue */
+    --accent: #18c1ff;        /* Cyan */
+    --bg-dark: #0b1220;       /* Deep Navy */
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --card-bg: #131c2e;
+}
+
+/* --- BASE STYLES --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    background: var(--bg-dark); 
+    font-family: 'Poppins', sans-serif; 
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+.awareness-training {
+    padding: 100px 0;
+    text-align: center;
+    background: radial-gradient(circle at top center, #1b2e4b 0%, var(--bg-dark) 80%);
+}
+
+/* --- SECTION HEADER --- */
+.detail-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 5px;
+}
+.detail-title span { color: var(--accent); }
+.detail-subtitle {
+    color: var(--text-muted);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 16px;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+.quote {
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+    max-width: 900px;
+    margin: 0 auto 50px;
+    padding: 20px;
+    border-top: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+/* --- PILLAR GRID LAYOUT --- */
+.pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* --- PILLAR CARD STYLING --- */
+.pillar-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 35px 25px;
+    border-radius: 12px;
+    text-align: left;
+    transition: all 0.4s ease;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pillar-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary);
+}
+
+.pillar-icon {
+    font-size: 40px;
+    color: var(--accent);
+    margin-bottom: 15px;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(24, 193, 255, 0.5);
+}
+
+.pillar-card h3 {
+    font-size: 22px;
+    color: white;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.pillar-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.pillar-card ul li {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.pillar-card ul li::before {
+    content: "▶"; /* Simple right arrow for list items */
+    color: var(--primary);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.pillar-card:hover ul li::before {
+    color: var(--accent);
+}
+
+/* --- CALL TO ACTION BUTTON --- */
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    margin-top: 60px;
+    background: var(--accent);
+    color: var(--bg-dark);
+    border: 2px solid var(--accent);
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(24, 193, 255, 0.5);
+}
+
+.cta-button:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 0 30px var(--primary);
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* --- ANIMATION CLASSES --- */
+.reveal-flow {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+.reveal-flow.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .detail-title { font-size: 30px; }
+    .quote { font-size: 16px; margin-bottom: 30px; }
+    .awareness-training { padding: 80px 0; }
+}
+</style>
+</head>
+<body>
+<header style="
+    background-color: #f8fafc; /* Light Gray/Off-White */
+    padding: 15px 40px; /* Vertical and horizontal padding */
+    display: flex;
+    justify-content: space-between; /* Puts logo on one end, navigation on the other */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for lift */
+    width: 100%;
+    box-sizing: border-box;
+">
+    <div class="logo" style="display: flex; align-items: center;">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="SYBRAI.png" alt="Sybrai Logo" style="width: 100px; height: 40px; display: block;">
+        </a>
+    </div>
+    <nav style="display: flex; gap: 30px;">
+        <a href="services.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">Services</a>
+        <a href="about.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">About</a>
+        <a href="vision.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">Vision</a>
+        <a href="contact.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">Contact</a>
+    </nav>
+</header>
+<section class="awareness-training">
+    <div class="container">
+        
+        <h2 class="detail-title reveal-flow" style="transition-delay: 0s;">Building the <span>Human Firewall</span></h2>
+        <p class="detail-subtitle reveal-flow" style="transition-delay: 0.1s;"> Transforming Employees and Citizens into Your First Line of Defense</p>
+        
+        <div class="quote reveal-flow" style="transition-delay: 0.2s;">
+            <p>"The greatest threat to cybersecurity is not technology, but human error. We train your teams to spot the attacks your software misses."</p>
+        </div>
+        
+        <div class="pillar-grid">
+
+            <div class="pillar-card reveal-flow" style="transition-delay: 0.4s;">
+                <div class="pillar-icon"></div>
+                <h3>1. Assess & Simulation</h3>
+                <ul>
+                    <li>**Phishing Simulation Campaigns:** Realistic, controlled email attacks to test vulnerability.</li>
+                    <li>**Vishing (Voice Phishing) Tests:** Evaluating phone-based social engineering resilience.</li>
+                    <li>**Tailored Risk Reporting:** Measuring individual and departmental susceptibility scores.</li>
+                    <li>**Pre-Training Baseline Audit:** Establishing initial knowledge gaps and specific needs.</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card reveal-flow" style="transition-delay: 0.6s;">
+                <div class="pillar-icon"></div>
+                <h3>2. Education & Workshops</h3>
+                <ul>
+                    <li>**Live Hack Demos:** Showing real-world consequences of weak passwords and unsecured Wi-Fi.</li>
+                    <li>**Insider Threat Workshops:** Training employees on recognizing and reporting suspicious internal activity.</li>
+                    <li>**Social Media Hygiene:** Guidelines for official and personal accounts to prevent corporate leakage.</li>
+                    <li>**Data Handling Protocols:** Securely managing sensitive data according to compliance standards.</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card reveal-flow" style="transition-delay: 0.8s;">
+                <div class="pillar-icon"></div>
+                <h3>3. Reinforcement & Metrics</h3>
+                <ul>
+                    <li>**Micro-Learning Modules:** Short, frequent sessions to reinforce key concepts and improve retention.</li>
+                    <li>**Post-Training Analysis:** Comparing current risk scores against the baseline audit.</li>
+                    <li>**Gamified Learning:** Engaging employees through security quizzes, leaderboards, and rewards.</li>
+                    <li>**Compliance Reporting:** Providing audit logs for government and regulatory bodies.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <a href="#" class="cta-button reveal-flow" style="transition-delay: 1s;">Start Your Team's Security Training</a>
+
+    </div>
+</section>
+
+<script>
+    /* --- SCROLL ANIMATION OBSERVER --- */
+    const observerOptions = {
+        threshold: 0.1, // Trigger when 10% of element is visible
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Apply 'active' class to start CSS animation
+                entry.target.classList.add('active');
+                
+                // Stop observing once revealed
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-flow').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>

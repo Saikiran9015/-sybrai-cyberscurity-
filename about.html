@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Cyber_AI - Our Story and Leadership</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            --primary: #2b4ecb;       /* Royal Blue */
+            --accent: #18c1ff;        /* Cyan */
+            --bg-dark: #0b1220;       /* Deep Navy */
+            --card-bg: #131c2e;       /* Card Background */
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --secure-green: #10b981;
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg-dark); 
+            color: var(--text-main); 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Space for the fixed header */
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        /* --- 2. HEADER (Fixed Styling) --- */
+        .global-header {
+            background-color: #f8fafc; 
+            padding: 15px 40px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .global-header .logo a { text-decoration: none; }
+        .global-header .logo img { width: 100px; height: 40px; display: block; object-fit: contain; }
+        .global-header nav { display: flex; gap: 30px; }
+        .global-header nav a { 
+            color: black; 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 16px; 
+            transition: color 0.3s;
+        }
+        .global-header nav a:hover { color: var(--primary); }
+
+        /* --- 3. ABOUT HERO & MISSION --- */
+        .about-hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at top, #1b2e4b 0%, var(--bg-dark) 90%);
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(24, 193, 255, 0.5);
+        }
+
+        .about-hero h2 {
+            font-size: 1.5rem;
+            color: var(--secure-green);
+            font-weight: 400;
+            margin-bottom: 40px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .mission-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            border-left: 5px solid var(--primary);
+            margin-top: 40px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInSlide 1s ease-out forwards 0.5s;
+        }
+
+        .mission-box h3 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mission-box p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* --- 4. WHAT WE DO SECTION (NEW) --- */
+        .what-we-do-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #0f1623 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            display: block;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(19, 28, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 35px 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            group: 1;
+        }
+
+        /* Hover Effect for Services */
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px -10px rgba(24, 193, 255, 0.3);
+            background: rgba(19, 28, 46, 0.9);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .service-card h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Decorative line */
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            width: 100%;
+        }
+
+        /* --- 5. TEAM SECTION --- */
+        .team-section {
+            padding: 60px 0 100px;
+            text-align: center;
+        }
+
+        .team-section h2 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .team-section p.lead {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .team-member-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--secure-green);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .member-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--primary);
+            transition: border-color 0.4s;
+            position: relative;
+            background-color: #000; /* Placeholder bg */
+        }
+
+        .team-member-card:hover .member-image-container {
+            border-color: var(--accent);
+        }
+        
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+            transition: filter 0.4s;
+        }
+        
+        .team-member-card:hover .member-image {
+            filter: grayscale(0%);
+        }
+
+        .member-name {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: white;
+        }
+        
+        .member-role {
+            color: var(--secure-green);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .member-subtitle {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .member-social a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .member-social a:hover {
+            color: var(--primary);
+        }
+
+        /* --- 6. FOOTER STYLING --- */
+        .site-footer {
+            background-color: var(--card-bg);
+            padding: 40px 0;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo img { width: 80px; height: 30px; object-fit: contain; }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--accent); }
+
+        .footer-social a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInSlide {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Animation delay for team members */
+        .team-member-card:nth-child(1) { animation: fadeInSlide 0.8s ease-out forwards 0.3s; }
+        .team-member-card:nth-child(2) { animation: fadeInSlide 0.8s ease-out forwards 0.5s; }
+        .team-member-card:nth-child(3) { animation: fadeInSlide 0.8s ease-out forwards 0.7s; }
+        
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            .about-hero h1 { font-size: 3rem; }
+            .about-hero h2 { font-size: 1.2rem; }
+            .team-section h2 { font-size: 2.5rem; }
+            .global-header { padding: 15px 20px; }
+            .global-header nav { display: none; } /* Simplified for mobile */
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="global-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="SYBRAI.png" alt="Sybrai Logo">
+        </a>
+    </div>
+    <nav>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="vision.html">Vision</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="about-hero">
+    <div class="container">
+        <h1>About <span>SYBRAI</span></h1>
+        <h2>The Architects of Autonomous Digital Defense</h2>
+        
+        <div class="mission-box">
+            <h3><i class="fa-solid fa-rocket"></i> Our Core Mission & Product Idea</h3>
+            <p>
+                Cyber_AI was founded on the principle that world-class, intelligent cybersecurity should be a universal right. Our core product is an **AI-Driven, Autonomous Digital Immune System** designed to protect entire networks—from a single student's phone to large governmental infrastructures—without human intervention.
+            </p>
+            <p style="margin-top: 15px;">
+                We are building a seamless, predictive defense layer that uses machine learning and global threat intelligence to anticipate and neutralize attacks *before* they cause damage.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="what-we-do-section">
+    <div class="container">
+        <h2 class="section-title">What We Do</h2>
+        <span class="section-subtitle">We don't just react to threats. We predict them.</span>
+
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <i class="fa-solid fa-brain service-icon"></i>
+                <h3>Autonomous Threat Hunting</h3>
+                <p>Our AI engines continuously patrol your network ecosystem, identifying anomalies and zero-day vulnerabilities that human analysts might miss.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-shield-virus service-icon"></i>
+                <h3>Real-Time Immunity</h3>
+                <p>Deploying instant countermeasures the moment a threat is detected. Like a digital immune system, we neutralize malware before it executes.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-network-wired service-icon"></i>
+                <h3>Predictive Analytics</h3>
+                <p>We analyze global attack patterns to predict where the next strike will come from, hardening your defenses before the enemy even launches an attack.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-bolt service-icon"></i>
+                <h3>Zero-Touch Response</h3>
+                <p>Automated incident response that isolates compromised devices and patches loopholes instantly, ensuring business continuity without downtime.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="team-section">
+    <div class="container">
+        <h2>Meet Our Leadership</h2>
+        <p class="lead">The visionaries steering the future of cyber defense.</p>
+        
+        <div class="team-grid">
+            
+            <div class="team-member-card">
+                <div class="member-image-container">
+                    <img src="founder.jpg" alt="Founder" class="member-image">
+                </div>
+                <h3 class="member-name">A. Saikiran</h3>
+                <span class="member-role">Founder</span>
+                <p class="member-subtitle">"Building protection that works silently, so the world can innovate loudly."</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="team-member-card">
+                <div class="member-image-container">
+                     <img src="cofounder.jpg" alt="Co-Founder" class="member-image">
+                </div>
+                <h3 class="member-name">Muneera</h3>
+                <span class="member-role">Co-Founder</span>
+                <p class="member-subtitle">"Translating radical AI technology into accessible, real-world solutions."</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="team-member-card">
+                <div class="member-image-container">
+                     <img src="cmo.jpg" alt="CMO" class="member-image">
+                </div>
+                <h3 class="member-name">P. Shyam Prasad</h3>
+                <span class="member-role">Chief Marketing Officer (CMO)</span>
+                <p class="member-subtitle">"Driving global awareness for a safer, more connected digital experience."</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    // --- ANIMATION SCRIPT ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const teamCards = document.querySelectorAll('.team-member-card');
+        const missionBox = document.querySelector('.mission-box');
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        // Start mission box animation
+        missionBox.style.opacity = 1;
+        missionBox.style.transform = 'translateY(0)';
+
+        // Viewport check helper
+        const isElementInViewport = (el) => {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 100
+            );
+        };
+
+        const animateElements = () => {
+            // Animate Team Cards
+            teamCards.forEach(card => {
+                if (isElementInViewport(card)) {
+                    card.style.opacity = 1;
+                    card.style.transform = 'scale(1)';
+                }
+            });
+            // Animate Service Cards (Optional fade in logic if desired, currently CSS handles hover)
+        };
+
+        // Initial check and scroll listener
+        animateElements();
+        window.addEventListener('scroll', animateElements);
+    });
+</script>
+
+</body>
+</html>

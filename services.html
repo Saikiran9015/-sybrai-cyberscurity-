@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sybrai Service Workflow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+/* --- VARIABLES --- */
+:root {
+  --primary: #2b4ecb;       /* Royal Blue */
+  --accent: #18c1ff;        /* Cyan */
+  --bg-dark: #0b1220;       /* Deep Navy */
+  --card-bg: #131c2e;       /* Card Background */
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+}
+
+/* --- RESET & BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+
+/* --- SECTION STYLING --- */
+.cyber-services {
+  padding: 100px 20px;
+  background: radial-gradient(circle at top center, #1b2e4b 0%, var(--bg-dark) 80%);
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- TYPOGRAPHY --- */
+.section-title {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.section-title span { color: var(--accent); }
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 800px;
+  margin: 0 auto 80px;
+  font-size: 16px;
+  font-family: 'Share Tech Mono', monospace;
+  border-left: 2px solid var(--accent);
+  padding-left: 15px;
+}
+
+/* --- WORKFLOW GRID LAYOUT --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  position: relative;
+}
+
+/* --- CONNECTION LINE (THE WORKFLOW VISUAL) --- */
+.workflow-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(43, 78, 203, 0.3);
+  z-index: 0;
+  transform: translateY(-50%);
+  display: none; 
+}
+
+.data-packet {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 50px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 5px;
+  box-shadow: 0 0 15px var(--accent);
+  animation: dataFlow 4s linear infinite;
+}
+
+@keyframes dataFlow {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* --- CARD DESIGN --- */
+.service-card {
+  background: rgba(19, 28, 46, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 40px 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 1;
+  display: flex;
+  flex-direction: column; /* Ensures button stays at bottom if needed */
+}
+
+/* Step Number */
+.step-number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.03);
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+/* Scanning Laser Effect */
+.service-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 15px var(--accent);
+  transition: 0.5s;
+}
+
+/* Hover Effects */
+.service-card:hover {
+  transform: translateY(-15px);
+  border-color: rgba(24, 193, 255, 0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+.service-card:hover .step-number {
+  color: rgba(24, 193, 255, 0.2);
+}
+.service-card:hover::after {
+  animation: scanLine 1.5s linear infinite;
+}
+
+@keyframes scanLine {
+  0% { top: 0; left: -100%; }
+  50% { left: 100%; }
+  100% { top: 100%; left: 100%; }
+}
+
+/* Text Styling */
+.service-card h3 {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 20px;
+  position: relative;
+  display: inline-block;
+}
+.service-card h3::before {
+  content:'';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--primary);
+  transition: 0.3s;
+}
+.service-card:hover h3::before { width: 100%; background: var(--accent); }
+
+.service-card p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* List Styling */
+.service-card ul {
+  list-style: none;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 15px;
+  margin-bottom: 25px; /* Spacing for button */
+  flex-grow: 1; /* Pushes button to bottom */
+}
+.service-card ul li {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.service-card ul li::before {
+  content: "▹";
+  color: var(--primary);
+  font-weight: bold;
+}
+.service-card:hover ul li::before {
+  color: var(--accent);
+}
+
+/* --- BUTTON STYLING --- */
+.service-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 30px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-top: auto; /* Ensures button sits at bottom */
+}
+
+.service-btn:hover {
+  background: var(--accent);
+  color: var(--bg-dark);
+  box-shadow: 0 0 15px rgba(24, 193, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Highlight Card (Helpline) Styling */
+.service-card.highlight {
+  border: 1px solid var(--primary);
+  background: linear-gradient(180deg, rgba(43, 78, 203, 0.1), rgba(19, 28, 46, 0.8));
+}
+
+.service-card.highlight .service-btn {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(43, 78, 203, 0.3);
+}
+
+.service-card.highlight .service-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-dark);
+}
+
+/* --- ANIMATION CLASSES --- */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- RESPONSIVE --- */
+@media(min-width: 1024px) {
+  .workflow-line { display: block; }
+}
+
+@media(max-width: 768px) {
+  .section-title { font-size: 32px; }
+  .services-grid { gap: 20px; }
+  .service-card { padding: 30px 20px; }
+  .service-btn { width: 100%; } /* Full width buttons on mobile */
+}
+</style>
+</head>
+<body>
+<header style="
+    background-color: #f8fafc; /* Light Gray/Off-White */
+    padding: 15px 40px; /* Vertical and horizontal padding */
+    display: flex;
+    justify-content: space-between; /* Puts logo on one end, navigation on the other */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for lift */
+    width: 100%;
+    box-sizing: border-box;
+">
+    <div class="logo" style="display: flex; align-items: center;">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="SYBRAI.png" alt="Sybrai Logo" style="width: 100px; height: 40px; display: block;">
+        </a>
+    </div>
+    <nav style="display: flex; gap: 30px;">
+        <a href="services.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">Services</a>
+        <a href="about.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">About</a>
+        <a href="vision.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">Vision</a>
+        <a href="contact.html" style="color: black; text-decoration: none; font-weight: 500; font-size: 16px; transition: color 0.3s;">Contact</a>
+    </nav>
+</header>
+
+<section class="cyber-services" id="services">
+  <div class="container">
+    <h2 class="section-title reveal-up">Defensive <span>Architecture</span></h2>
+    <p class="section-subtitle reveal-up">
+       SYSTEM_STATUS: SECURE<br>
+      Deploying comprehensive AI-driven cybersecurity protocols for enterprise and government infrastructure.
+    </p>
+
+    <div class="services-grid">
+      <div class="workflow-line"><div class="data-packet"></div></div>
+
+      <div class="service-card reveal-up" style="transition-delay: 0.1s;">
+        <div class="step-number">01</div>
+        <h3>AI-Powered Threat Monitoring</h3>
+        <p>
+          24/7 AI-driven surveillance and <b>SOC-as-a-Service</b> for critical network infrastructure.
+        </p>
+        <ul>
+          <li>Real-time heuristic detection</li>
+          <li>Automated incident response</li>
+          <li>Centralized security ops</li>
+          <li>Compliance log monitoring</li>
+        </ul>
+        <a href="explore soc.html" class="service-btn">Explore SOC</a>
+      </div>
+
+      <div class="service-card reveal-up" style="transition-delay: 0.2s;">
+        <div class="step-number">02</div>
+        <h3>Vulnerability & Cloud Sec</h3>
+        <p>
+          Deep-dive penetration testing and hardening for cloud architectures (AWS/Azure).
+        </p>
+        <ul>
+          <li>API Penetration Testing</li>
+          <li>Cloud config hardening</li>
+          <li>Risk scoring matrices</li>
+          <li>Data encryption at rest</li>
+        </ul>
+        <a href="Cloud Sec.html" class="service-btn">View Assessment</a>
+      </div>
+
+      <div class="service-card reveal-up" style="transition-delay: 0.3s;">
+        <div class="step-number">03</div>
+        <h3>Ransomware Defense</h3>
+        <p>
+          Enterprise-grade protection against phishing vectors and crypto-locking malware.
+        </p>
+        <ul>
+          <li>Anti-spoofing (DMARC)</li>
+          <li>Zero-day malware prevention</li>
+          <li>Encrypted backups</li>
+          <li>Hospital data shielding</li>
+        </ul>
+        <a href="email.html" class="service-btn">Secure Email</a>
+      </div>
+
+      <div class="service-card reveal-up" style="transition-delay: 0.4s;">
+        <div class="step-number">04</div>
+        <h3>Security Awareness</h3>
+        <p>
+          Human-firewall training to prevent social engineering and operational security leaks.
+        </p>
+        <ul>
+          <li>Phishing simulations</li>
+          <li>Social media hygiene</li>
+          <li>Insider threat workshops</li>
+          <li>Live hack demos</li>
+        </ul>
+        <a href="Start Training.html" class="service-btn">Start Training</a>
+      </div>
+
+      <div class="service-card highlight reveal-up" style="transition-delay: 0.5s;">
+        <div class="step-number">05</div>
+        <h3>Rapid Response Helpline</h3>
+        <p>
+          Emergency incident response and personal security auditing for immediate threats.
+        </p>
+        <ul>
+          <li>Wi-Fi/Network auditing</li>
+          <li>Compromised account recovery</li>
+          <li>Banking fraud mitigation</li>
+          <li>24/7 SME Guidance</li>
+        </ul>
+        <a href="Help.html" class="service-btn">Get Immediate Help</a>
+      </div>
+
+      <div class="service-card highlight reveal-up" style="transition-delay: 0.5s;">
+        <div class="step-number">06</div>
+        <h3>Cyber-AI Solutions</h3>
+        <p>
+          Deploying next-generation **Predictive Defense** and compliance automation using advanced AI.
+        </p>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <a href="ai.html" class="service-btn">Explore AI Platform</a>
+      </div>
+
+    </div>
+    
+  </div>
+</section>
+
+<script>
+  /* --- SCROLL ANIMATION OBSERVER --- */
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-up').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
