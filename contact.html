@@ -2,166 +2,277 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Cyber_AI - Get in Touch</title>
+    <title>Sybrai - Contact</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- 1. VARIABLES & RESET --- */
         :root {
+            /* SYBRAI BRAND COLORS */
+            --bg-dark: #050b14;       /* Very Deep Navy (almost black) */
+            --nav-bg: #020617;        /* Header Background */
             --primary: #2b4ecb;       /* Royal Blue */
-            --accent: #18c1ff;        /* Cyan */
-            --bg-dark: #0b1220;       /* Deep Navy */
-            --card-bg: #131c2e;       /* Card Background */
-            --text-main: #e2e8f0;
+            --accent-cyan: #18c1ff;   /* Cyan Accent */
+            --accent-purple: #7b2cbf; /* Purple Accent (from logo gradient) */
+            --text-main: #ffffff;
             --text-muted: #94a3b8;
-            --secure-green: #10b981;
+            --card-bg: #0f172a;       /* Slightly lighter navy for cards */
+            --card-border: rgba(255, 255, 255, 0.08);
+            --header-height: 80px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
         body { 
             background: var(--bg-dark); 
             color: var(--text-main); 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-top: 80px; /* Space for the fixed header */
+            overflow-x: hidden;
+        }
+
+        /* --- 2. HEADER REDESIGN (MATCHING UPLOADED IMAGES) --- */
+        .site-header {
+            background-color: var(--nav-bg);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* LOGO AREA */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        /* Placeholder for the 'S' symbol image */
+        .logo-img {
+            height: 40px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* SYBRAI TEXT STYLE */
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            /* Optional: Add slight gradient to text if desired */
+            /* background: linear-gradient(to right, #fff, #a5b4fc);
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent; */
+        }
+
+        /* DESKTOP NAVIGATION */
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Underline effect on hover */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* HAMBURGER MENU (MOBILE) */
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1002; /* Above the overlay */
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        /* --- MOBILE MENU OVERLAY (MATCHING SCREENSHOT) --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--nav-bg); /* Dark Navy */
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transform: translateY(-100%); /* Hidden by default */
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                font-size: 24px;
+                font-weight: 500;
+                color: white;
+            }
+
+            .menu-btn {
+                display: flex;
+            }
+
+            /* ANIMATE HAMBURGER TO 'X' */
+            .menu-btn.open span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .menu-btn.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-btn.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -7px);
+            }
+        }
+
+        /* --- 3. CONTACT SECTION BODY --- */
+        .contact-section {
+            flex-grow: 1;
+            padding: 80px 20px;
+            background: radial-gradient(circle at top right, #1e293b 0%, var(--bg-dark) 60%);
         }
 
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 0 20px;
-            z-index: 2;
-            position: relative;
-        }
-        
-        /* --- 2. HEADER (Fixed Styling) --- */
-        .global-header {
-            background-color: #f8fafc; 
-            padding: 15px 40px; 
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-            width: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
         }
 
-        .global-header .logo a { text-decoration: none; }
-        .global-header .logo img { width: 100px; height: 40px; display: block; }
-        .global-header nav { display: flex; gap: 30px; }
-        .global-header nav a { 
-            color: black; 
-            text-decoration: none; 
-            font-weight: 500; 
-            font-size: 16px; 
-            transition: color 0.3s;
+        .contact-header {
+            margin-bottom: 60px;
         }
 
-        /* --- 3. CONTACT SECTION BODY --- */
-        .contact-section {
-            flex-grow: 1; /* Pushes footer to the bottom */
-            padding: 60px 0 80px;
-            background: radial-gradient(circle at top, #1b2e4b 0%, var(--bg-dark) 90%);
-        }
-
-        .contact-section h1 {
-            font-size: 3.5rem;
+        .contact-header h1 {
+            font-size: 3rem;
             font-weight: 700;
             color: white;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(24, 193, 255, 0.3);
+            margin-bottom: 15px;
         }
         
-        .contact-section h1 span {
-            color: var(--accent);
+        .contact-header h1 span {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .contact-section p.subtitle {
+        .contact-header p {
             font-size: 1.1rem;
             color: var(--text-muted);
-            margin-bottom: 50px;
-            border-left: 2px solid var(--primary);
-            padding-left: 10px;
+            max-width: 600px;
+            line-height: 1.6;
         }
 
         .contact-layout {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Form is wider than info */
-            gap: 40px;
+            grid-template-columns: 1.5fr 1fr; 
+            gap: 50px;
         }
-        
-        /* --- 4. CONTACT FORM STYLING --- */
+
+        /* FORM STYLING */
         .contact-form-area {
             background: var(--card-bg);
             padding: 40px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s ease;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
         
         .form-group {
-            margin-bottom: 20px;
-            position: relative;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            color: var(--text-main);
-            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
 
-        input[type="text"], 
-        input[type="email"], 
-        input[type="tel"],
-        textarea {
+        input, textarea {
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(15, 23, 42, 0.8); /* Darker input background */
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.2);
             border: 1px solid var(--card-border);
-            border-radius: 6px;
-            color: var(--text-main);
+            border-radius: 8px;
+            color: white;
             font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
         }
 
         input:focus, textarea:focus {
-            border-color: var(--accent);
             outline: none;
-            box-shadow: 0 0 15px rgba(24, 193, 255, 0.4);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 150px;
+            border-color: var(--accent-cyan);
+            background: rgba(24, 193, 255, 0.05);
         }
 
         .submit-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--secure-green);
-            color: var(--bg-dark);
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            color: white;
             border: none;
-            border-radius: 6px;
-            font-weight: 700;
-            text-transform: uppercase;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .submit-btn:hover {
-            background: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(24, 193, 255, 0.4);
+            box-shadow: 0 10px 20px rgba(43, 78, 203, 0.3);
         }
         
-        /* --- 5. INFO CARDS STYLING --- */
+        /* INFO CARDS */
         .contact-info-area {
             display: flex;
             flex-direction: column;
@@ -172,300 +283,236 @@
             background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
-            border-left: 3px solid var(--primary);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            flex-grow: 1; /* Ensures cards fill space vertically */
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .info-card.active {
-            opacity: 1;
-            transform: translateY(0);
+            border: 1px solid var(--card-border);
+            transition: 0.3s;
         }
 
         .info-card:hover {
-            border-left-color: var(--accent);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent-cyan);
+            transform: translateX(5px);
         }
 
         .info-card h4 {
+            color: white;
             font-size: 1.2rem;
-            color: var(--accent);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .info-card a {
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color 0.3s;
+        .info-card h4 i { color: var(--accent-cyan); }
+
+        .info-card a, .info-card p {
             display: block;
-            margin-bottom: 5px;
-        }
-
-        .info-card a:hover {
-            color: var(--secure-green);
-        }
-        
-        /* --- 6. FOOTER STYLING --- */
-        .site-footer {
-            background-color: var(--card-bg);
-            padding: 40px 0;
-            border-top: 1px solid var(--card-border);
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .footer-logo img {
-            width: 80px;
-            height: 30px;
-        }
-        
-        .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: var(--accent);
+        .info-card a:hover { color: var(--accent-cyan); }
+
+        /* --- 4. FOOTER --- */
+        footer {
+            background: #020617;
+            padding: 60px 5% 30px;
+            border-top: 1px solid var(--card-border);
+            margin-top: auto;
         }
 
-        .footer-social a {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        footer h3 { color: white; margin-bottom: 20px; font-size: 18px; }
+        
+        footer a {
+            display: block;
             color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-left: 15px;
-            transition: color 0.3s;
-        }
-
-        .footer-social a:hover {
-            color: var(--primary);
-        }
-
-        .footer-bottom {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+            transition: 0.2s;
         }
         
+        footer a:hover { color: var(--accent-cyan); }
+        
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
         /* --- RESPONSIVE ADJUSTMENTS --- */
-        @media (max-width: 992px) {
+        @media (max-width: 900px) {
             .contact-layout {
-                grid-template-columns: 1fr; /* Single column on tablets/mobile */
+                grid-template-columns: 1fr;
             }
             .contact-form-area {
-                order: 2; /* Put form below info on mobile */
+                order: 2;
             }
             .contact-info-area {
                 order: 1;
+                flex-direction: row;
+                flex-wrap: wrap;
             }
-            .contact-section h1 { font-size: 2.5rem; }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .footer-links {
-                order: 3;
-            }
+            .info-card { flex: 1; min-width: 250px; }
         }
-        /* --- FOOTER --- */
-footer {
-  background: var(--darker-bg);
-  padding: 80px 50px 30px;
-  color: var(--text-muted);
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
-}
-footer h3 { color: white; margin-bottom: 20px; font-size: 18px; }
-footer a {
-  display: block;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: 12px;
-  transition: 0.2s;
-  font-size: 14px;
-}
-footer a:hover { color: var(--accent); transform: translateX(5px); }
-.footer-bottom {
-  margin-top: 60px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  padding-top: 25px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.6;
-}
 
-/* RESPONSIVE */
-@media(max-width: 768px) {
-  header { padding: 15px 20px; }
-  nav { display: none; }
-  .hero h1 { font-size: 38px; }
-  .section { padding: 60px 25px; }
-}
-
+        @media (max-width: 600px) {
+            .contact-info-area { flex-direction: column; }
+            .contact-header h1 { font-size: 2.2rem; }
+            .site-header { padding: 0 20px; }
+        }
     </style>
 </head>
 <body>
 
-<header class="global-header">
-    <div class="logo">
-        <a href="index.html">
-            <img src="SYBRAI.png" alt="Sybrai Logo">
+    <header class="site-header">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Sybrai Logo" class="logo-img">
+            
         </a>
-    </div>
-    <nav>
-        <a href="services.html">Services</a>
-        <a href="about.html">About</a>
-        <a href="vision.html">Vision</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-</header>
 
-<section class="contact-section">
-    <div class="container">
-        <h1>Contact <span>Cyber_AI</span></h1>
-        <p class="subtitle">
-            Secure your digital future. Reach out to our expert team for inquiries, support, or a customized security consultation.
-        </p>
+        <div class="menu-btn" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-        <div class="contact-layout">
-            
-            <div class="contact-form-area">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required placeholder="John Doe">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="name@company.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number (Optional)</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+91 9876 543 210">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Security Consultation or Partnership Inquiry">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message Details</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="How can Cyber_AI help you today?"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Secure Message</button>
-                </form>
+        <nav class="nav-links" id="navLinks">
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="vision.html">Vision</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-header">
+                <h1>Contact <span>Sybrai</span></h1>
+                <p>Secure your digital future. Reach out to our expert team for inquiries, support, or a customized security consultation.</p>
             </div>
-            
-            <div class="contact-info-area">
-                
-                <div class="info-card" style="transition-delay: 0.1s;">
-                    <h4><i class="fa-solid fa-phone-volume"></i> Support & Emergency</h4>
-                    <p style="color: var(--secure-green); font-weight: 600;">For Immediate Cyber Incidents:</p>
-                    <a href="tel:+918000080000"><i class="fa-solid fa-square-phone"></i> +91 6301576935 (24/7 Hotline)</a>
-                    <a href="mailto:support@cyber-ai.com"><i class="fa-solid fa-envelope"></i> support@sybrai.com</a>
-                </div>
-                
-                <div class="info-card" style="transition-delay: 0.3s;">
-                    <h4><i class="fa-solid fa-location-dot"></i> Corporate Headquarters</h4>
-                    <p>Sybrai Pvt. Ltd.</p>
-                    <p></p>
-                    <p></p>
-                </div>
 
-                <div class="info-card" style="transition-delay: 0.5s;">
-                    <h4><i class="fa-solid fa-briefcase"></i> Sales & Partnerships</h4>
-                    <a href="mailto:sales@cyber-ai.com"><i class="fa-solid fa-envelope"></i> sales@sybrai.com</a>
-                    <a href="mailto:partners@cyber-ai.com"><i class="fa-solid fa-handshake"></i></a>
+            <div class="contact-layout">
+                
+                <div class="contact-form-area">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="name@company.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Security Consultation">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
                 </div>
                 
+                <div class="contact-info-area">
+                    
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-phone"></i> Contact</h4>
+                        <a href="tel:+916301576935">+91 6301576935</a>
+                        <a href="mailto:support@sybrai.com">support@sybrai.com</a>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+                        <p>Sybrai Pvt. Ltd.</p>
+                        <p>Tech Park, Hyderabad</p>
+                        <p>Telangana, India</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-share-nodes"></i> Connect</h4>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                    
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer>
-  <div class="footer-grid">
-    <div>
-      <h3>Sybrai Cybersecurity</h3>
-      <p>Defending the digital frontier with intelligence and precision.</p>
-    </div>
-    <div>
-      <h3>Services</h3>
-      <a href="#">Threat Detection</a>
-      <a href="#">Cloud Security</a>
-      <a href="#">Penetration Testing</a>
-    </div>
-    <div>
-      <h3>Company</h3>
-      <a href="#">About Us</a>
-      <a href="#">Careers</a>
-      <a href="#">Partners</a>
-    </div>
-    <div>
-      <h3>Contact</h3>
-      <a href="#">security@sybrai.com</a>
-      <a href="#">+91 6301576935</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    &copy; 2025 Sybrai Cybersecurity. Secure. Detect. Defend.
-  </div>
-</footer>
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3>Sybrai Cybersecurity</h3>
+                <p>Defending the digital frontier with intelligence and precision.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <a href="#">Services</a>
+                <a href="#">About Us</a>
+                <a href="#">Vision</a>
+            </div>
+            <div>
+                <h3>Legal</h3>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div>
+                <h3>Get in Touch</h3>
+                <a href="mailto:security@sybrai.com">security@sybrai.com</a>
+                <a href="tel:+916301576935">+91 6301576935</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Sybrai Cybersecurity. All Rights Reserved.
+        </div>
+    </footer>
 
-<script>
-    // --- ANIMATION SCRIPT ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const infoCards = document.querySelectorAll('.info-card');
-        
-        // Function to check if an element is in viewport
-        const isElementInViewport = (el) => {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        };
+    <script>
+        // Toggle Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const body = document.body;
 
-        // Function to run the animation
-        const animateCards = () => {
-            infoCards.forEach(card => {
-                if (isElementInViewport(card)) {
-                    card.classList.add('active');
-                }
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            if(navLinks.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('open');
+                navLinks.classList.remove('active');
+                body.style.overflow = 'auto';
             });
-        };
-
-        // Initial check and set scroll listener
-        animateCards();
-        window.addEventListener('scroll', animateCards);
-    });
-</script>
-
+        });
+    </script>
 </body>
 </html>

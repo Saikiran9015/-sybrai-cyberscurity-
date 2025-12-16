@@ -1,0 +1,167 @@
+:root {
+  --primary: #2b4ecb;       /* Deep Royal Blue */
+  --primary-dark: #1a369c;
+  --accent: #18c1ff;        /* Bright Cyan */
+  
+  --dark-bg: #0b1220;       /* Very dark navy */
+  --darker-bg: #020617;     /* Almost black */
+  --card-bg: #131c2e;       /* Card background */
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --glow: 0 0 20px rgba(43, 78, 203, 0.6);
+}
+
+/* --- 2. RESET & BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; }
+a { text-decoration: none; }
+ul { list-style: none; }
+
+/* --- 3. UTILITIES & ANIMATIONS --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(24, 193, 255, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(24, 193, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(24, 193, 255, 0); }
+}
+
+@keyframes glitch {
+  0% { text-shadow: 0.05em 0 0 rgba(43, 78, 203, 0.75), -0.025em -0.05em 0 rgba(24, 193, 255, 0.75), 0.025em 0.05em 0 rgba(0,0,255,0.75); }
+  14% { text-shadow: 0.05em 0 0 rgba(43, 78, 203, 0.75), -0.025em -0.05em 0 rgba(24, 193, 255, 0.75), 0.025em 0.05em 0 rgba(0,0,255,0.75); }
+  15% { text-shadow: -0.05em -0.025em 0 rgba(43, 78, 203, 0.75), 0.025em 0.025em 0 rgba(24, 193, 255, 0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+  49% { text-shadow: -0.05em -0.025em 0 rgba(43, 78, 203, 0.75), 0.025em 0.025em 0 rgba(24, 193, 255, 0.75), -0.05em -0.05em 0 rgba(0,0,255,0.75); }
+  50% { text-shadow: 0.025em 0.05em 0 rgba(43, 78, 203, 0.75), 0.05em 0 0 rgba(24, 193, 255, 0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+  99% { text-shadow: 0.025em 0.05em 0 rgba(43, 78, 203, 0.75), 0.05em 0 0 rgba(24, 193, 255, 0.75), 0 -0.05em 0 rgba(0,0,255,0.75); }
+  100% { text-shadow: -0.025em 0 0 rgba(43, 78, 203, 0.75), -0.025em -0.025em 0 rgba(24, 193, 255, 0.75), -0.025em -0.05em 0 rgba(0,0,255,0.75); }
+}
+
+/* --- 4. HEADER & NAVIGATION --- */
+header {
+  background: rgba(11, 18, 32, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  height: 80px;
+}
+
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 40px; /* Adjust based on your actual logo image */
+  width: auto;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  letter-spacing: 1px;
+}
+.logo-text span { color: var(--accent); }
+
+/* Desktop Navigation */
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: 0.3s;
+  position: relative;
+  font-size: 16px;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* Hamburger Menu Icon (3 Lines) */
+.menu-btn {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- 5. RESPONSIVE MOBILE MENU --- */
+@media(max-width: 768px) {
+  header { padding: 15px 20px; }
+  
+  .menu-btn { display: flex; } /* Show hamburger on mobile */
+
+  .nav-links {
+    position: absolute;
+    top: 80px; /* Height of header */
+    left: 0;
+    width: 100%;
+    background: var(--darker-bg);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .nav-links.active {
+    max-height: 400px; /* Expands menu */
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: block;
+  }
+
+  /* Hamburger Animation to 'X' */
+  .menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background: var(--accent); }
+  .menu-btn.open span:nth-child(2) { opacity: 0; }
+  .menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -8px); background: var(--accent); }
+}
