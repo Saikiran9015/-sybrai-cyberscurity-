@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Threat Workflow | Advanced SOC Monitoring - Sybrai</title>
+    <meta name="description"
+        content="Explore Sybrai's AI-powered threat workflow, from data ingestion and neural detection to active defense and SOC oversight.">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        :root {
+            /* SYBRAI BRAND PALETTE */
+            --cyan: #00ecff;
+            /* Stage 1 */
+            --blue: #2b4ecb;
+            /* Stage 2 */
+            --indigo: #6366f1;
+            /* Stage 3 */
+            --purple: #9d00ff;
+            /* Stage 4 */
+
+            --logo-gradient: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 50%, var(--purple) 100%);
+
+            /* BACKGROUNDS */
+            --bg-dark: #050505;
+            /* Pure Black */
+            --card-bg: #0f1115;
+            /* Slightly lighter for cards */
+            --card-border: rgba(255, 255, 255, 0.08);
+
+            /* TEXT */
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: var(--header-height);
+            overflow-x: hidden;
+        }
+
+        /* --- 2. HEADER (MATCHING SYBRAI DESIGN) --- */
+        .global-header {
+            background-color: rgba(5, 5, 5, 0.85);
+            /* Dark Glass */
+            backdrop-filter: blur(15px);
+            height: var(--header-height);
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        /* NAV LINKS */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--logo-gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* HAMBURGER */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* --- 3. WORKFLOW TITLE --- */
+        .workflow-header {
+            text-align: center;
+            margin: 60px 0 60px;
+            padding: 0 20px;
+        }
+
+        .workflow-header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(43, 78, 203, 0.3));
+        }
+
+        /* --- 4. WORKFLOW CONTAINER --- */
+        .workflow-container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            width: 100%;
+            max-width: 1400px;
+            gap: 0;
+            /* Gap handled by connectors */
+            position: relative;
+            padding: 0 20px 80px;
+        }
+
+        /* --- 5. STAGE CARDS --- */
+        .stage-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            width: 280px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+            z-index: 2;
+        }
+
+        .stage-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(180deg, #161b22 0%, var(--card-bg) 100%);
+        }
+
+        /* Stage Specific Colors (Gradient Flow) */
+        .stage-1 {
+            border-top: 3px solid var(--cyan);
+        }
+
+        .stage-2 {
+            border-top: 3px solid var(--blue);
+        }
+
+        .stage-3 {
+            border-top: 3px solid var(--indigo);
+        }
+
+        .stage-4 {
+            border-top: 3px solid var(--purple);
+        }
+
+        /* Hover Glows */
+        .stage-1:hover {
+            box-shadow: 0 15px 40px -10px rgba(0, 236, 255, 0.2);
+            border-color: var(--cyan);
+        }
+
+        .stage-2:hover {
+            box-shadow: 0 15px 40px -10px rgba(43, 78, 203, 0.3);
+            border-color: var(--blue);
+        }
+
+        .stage-3:hover {
+            box-shadow: 0 15px 40px -10px rgba(99, 102, 241, 0.3);
+            border-color: var(--indigo);
+        }
+
+        .stage-4:hover {
+            box-shadow: 0 15px 40px -10px rgba(157, 0, 255, 0.3);
+            border-color: var(--purple);
+        }
+
+        .card-header {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stage-1 .card-header {
+            color: var(--cyan);
+        }
+
+        .stage-2 .card-header {
+            color: var(--blue);
+        }
+
+        .stage-3 .card-header {
+            color: var(--indigo);
+        }
+
+        .stage-4 .card-header {
+            color: var(--purple);
+        }
+
+        /* List Items */
+        .item-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            padding-left: 12px;
+            /* Slide effect */
+        }
+
+        /* Highlighted items inside cards */
+        .highlight-bg {
+            background: linear-gradient(90deg, rgba(43, 78, 203, 0.1), transparent);
+            border-left: 2px solid var(--blue);
+            color: #fff;
+        }
+
+        /* --- 6. CONNECTORS & ANIMATION --- */
+        .connector {
+            flex-grow: 1;
+            min-width: 40px;
+            max-width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .line {
+            width: 100%;
+            height: 2px;
+            background-color: #1e293b;
+            position: relative;
+        }
+
+        /* The Arrow Head */
+        .line::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 6px 0 6px 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent #1e293b;
+        }
+
+        /* The Moving Particle */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            box-shadow: 0 0 8px 2px currentColor;
+        }
+
+        /* Animation Keyframes */
+        @keyframes flowRight {
+            0% {
+                left: 0%;
+                opacity: 0;
+                transform: translate(0, -50%) scale(0.5);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translate(0, -50%) scale(1.2);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translate(0, -50%) scale(1.2);
+            }
+
+            100% {
+                left: 100%;
+                opacity: 0;
+                transform: translate(0, -50%) scale(0.5);
+            }
+        }
+
+        @keyframes flowDown {
+            0% {
+                top: 0%;
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Assignments */
+        .p-1 {
+            background: var(--cyan);
+            color: var(--cyan);
+            animation: flowRight 2s infinite linear;
+        }
+
+        .p-2 {
+            background: var(--blue);
+            color: var(--blue);
+            animation: flowRight 2s infinite linear 0.4s;
+        }
+
+        .p-3 {
+            background: var(--purple);
+            color: var(--purple);
+            animation: flowRight 2s infinite linear 0.8s;
+        }
+
+        .delay-1 {
+            animation-delay: 1s;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1200px) {
+            .workflow-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+            }
+
+            .stage-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .connector {
+                height: 60px;
+                width: 2px;
+                flex-grow: 0;
+            }
+
+            .line {
+                width: 2px;
+                height: 100%;
+            }
+
+            .line::after {
+                right: auto;
+                bottom: -4px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-width: 8px 6px 0 6px;
+                border-color: #1e293b transparent transparent transparent;
+            }
+
+            .p-1,
+            .p-2,
+            .p-3 {
+                animation-name: flowDown;
+            }
+
+            .particle {
+                left: 50%;
+                top: 0;
+            }
+
+            /* Mobile Menu Logic */
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: #050505;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+            }
+
+            .nav-links a {
+                padding: 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="global-header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Sybrai Logo">
+            </a>
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="nav-links" id="nav-links">
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="vision.html">Vision</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="workflow-header">
+        <h1>AI-Powered Threat Workflow</h1>
+    </div>
+
+    <div class="workflow-container">
+
+        <div class="stage-card stage-1">
+            <div class="card-header">
+                <i class="fa-solid fa-database"></i> Ingestion
+            </div>
+            <ul class="item-list">
+                <li class="item"><i class="fa-solid fa-network-wired" style="color:var(--cyan)"></i> Network Traffic
+                </li>
+                <li class="item"><i class="fa-solid fa-server" style="color:var(--cyan)"></i> DNS / Proxy Logs</li>
+                <li class="item"><i class="fa-brands fa-aws" style="color:var(--cyan)"></i> Cloud Audit Logs</li>
+                <li class="item"><i class="fa-solid fa-globe" style="color:var(--cyan)"></i> Threat Intel</li>
+            </ul>
+        </div>
+
+        <div class="connector">
+            <div class="line">
+                <div class="particle p-1"></div>
+                <div class="particle p-1 delay-1"></div>
+            </div>
+        </div>
+
+        <div class="stage-card stage-2">
+            <div class="card-header">
+                <i class="fa-solid fa-brain"></i> AI Core Analysis
+            </div>
+            <ul class="item-list">
+                <li class="item"><i class="fa-solid fa-filter"></i> Data Normalization</li>
+                <li class="item highlight-bg"><i class="fa-solid fa-microchip"></i> Neural Detection</li>
+                <li class="item highlight-bg"><i class="fa-solid fa-robot"></i> Auto-Triage</li>
+                <li class="item"><i class="fa-solid fa-fingerprint"></i> Pattern Matching</li>
+            </ul>
+        </div>
+
+        <div class="connector">
+            <div class="line">
+                <div class="particle p-2"></div>
+                <div class="particle p-2 delay-1"></div>
+            </div>
+        </div>
+
+        <div class="stage-card stage-3">
+            <div class="card-header">
+                <i class="fa-solid fa-shield-halved"></i> Active Defense
+            </div>
+            <ul class="item-list">
+                <li class="item"><i class="fa-solid fa-bolt" style="color:var(--indigo)"></i> Instant Block</li>
+                <li class="item"><i class="fa-solid fa-book-open" style="color:var(--indigo)"></i> Playbook Exec</li>
+                <li class="item"><i class="fa-solid fa-box-open" style="color:var(--indigo)"></i> Sandbox Detonation
+                </li>
+                <li class="item"><i class="fa-solid fa-file-code" style="color:var(--indigo)"></i> Forensics</li>
+            </ul>
+        </div>
+
+        <div class="connector">
+            <div class="line">
+                <div class="particle p-3"></div>
+                <div class="particle p-3 delay-1"></div>
+            </div>
+        </div>
+
+        <div class="stage-card stage-4">
+            <div class="card-header">
+                <i class="fa-solid fa-user-shield"></i> SOC Oversight
+            </div>
+            <div style="text-align: center; margin-bottom: 15px; opacity:0.8;">
+                <i class="fa-solid fa-tower-observation" style="font-size: 2.5rem; color: var(--purple);"></i>
+            </div>
+            <ul class="item-list">
+                <li class="item"><i class="fa-solid fa-desktop" style="color:var(--purple)"></i> Live Dashboard</li>
+                <li class="item"><i class="fa-solid fa-timeline" style="color:var(--purple)"></i> Incident Timeline</li>
+                <li class="item"><i class="fa-solid fa-file-contract" style="color:var(--purple)"></i> Compliance Rpt
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        const icon = menuBtn.querySelector('i');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

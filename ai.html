@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sybrai | AI-Driven Cybersecurity Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Discover how Sybrai uses advanced Artificial Intelligence to detect threats and defend digital infrastructure in real-time.">
+  <meta name="robots" content="index, follow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================= RESET ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0b1220;
+      color: #f8fafc;
+    }
+
+    /* ================= HEADER ================= */
+    .site-header {
+      background: rgba(11, 18, 32, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo img {
+      height: 42px;
+    }
+
+    /* NAV LINKS */
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #18c1ff;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: #18c1ff;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HAMBURGER */
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      width: 26px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+      transition: transform 0.3s, opacity 0.25s, background 0.25s;
+      display: block;
+    }
+
+    /* Hamburger open state: animate into an X */
+    .menu-btn.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-btn.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-btn.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+
+
+    /* ================= FOOTER ================= */
+    footer {
+      background: #020617;
+      padding: 60px 40px 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    footer a {
+      display: block;
+      text-decoration: none;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      opacity: .6;
+    }
+
+    /* ================= MOBILE ================= */
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 12px 18px;
+      }
+
+      .menu-btn {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(2, 6, 23, 0.98);
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 0 28px;
+        display: flex;
+        /* keep flex for layout but hidden via transform/opacity */
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 280ms cubic-bezier(.2, .9, .2, 1), opacity 240ms ease;
+        z-index: 999;
+      }
+
+      .nav-links a {
+        font-size: 18px;
+        color: #f8fafc;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Prevent background scroll when menu open */
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .menu-btn span {
+        background: white;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .section {
+        padding: 60px 25px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/mobile.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="SYBRAI.png" alt="Sybrai Logo">
+      </a>
+    </div>
+
+    <div class="menu-btn" id="menuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="vision.html">Vision</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div>
+      <h1>Secure. Detect. Defend.</h1>
+      <p>Advanced AI-driven cybersecurity protecting your digital infrastructure.</p>
+      <button>Get Security Assessment</button>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section class="section">
+    <h2>Our Services</h2>
+    <p>Comprehensive cybersecurity solutions for modern threats.</p>
+
+    <div class="services">
+      <div class="card">
+        <h3>Threat Detection</h3>
+        <p>Real-time AI monitoring for zero-day threats.</p>
+      </div>
+      <div class="card">
+        <h3>Network Security</h3>
+        <p>Next-gen firewall & encrypted traffic analysis.</p>
+      </div>
+      <div class="card">
+        <h3>Cloud Protection</h3>
+        <p>AWS, Azure & hybrid cloud security.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Sybrai</h3>
+        <p>Defending the digital frontier.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <a href="#">security@sybrai.com</a>
+        <a href="#">+91 6301576935</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Sybrai Cybersecurity
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu behavior: open/close, keyboard, outside click, escape, resize
+    (function () {
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+      if (!menuBtn || !navLinks) return;
+
+      function openMenu() {
+        menuBtn.classList.add('open');
+        navLinks.classList.add('active');
+        document.body.classList.add('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeMenu() {
+        menuBtn.classList.remove('open');
+        navLinks.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleMenu() {
+        if (navLinks.classList.contains('active')) closeMenu(); else openMenu();
+      }
+
+      menuBtn.addEventListener('click', toggleMenu);
+
+      menuBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+      });
+
+      // Close when clicking outside the open menu
+      document.addEventListener('click', (e) => {
+        if (!navLinks.classList.contains('active')) return;
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) closeMenu();
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) closeMenu();
+      });
+
+      // Ensure menu is closed when resizing to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) closeMenu();
+      });
+
+    })();
+  </script>
+
+  <script src="assets/menu.js" defer></script>
+</body>
+
+</html>

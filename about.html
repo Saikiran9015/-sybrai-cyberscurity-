@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>About SYBRAI – Secure. Detect. Defend.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Learn about Sybrai Cybersecurity's mission to build AI-driven autonomous digital defense systems and protect global infrastructure.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sybrai.com/about.html">
+  <meta property="og:title" content="About SYBRAI – Secure. Detect. Defend.">
+  <meta property="og:description" content="Mission, leadership, and expertise in AI-powered cybersecurity.">
+  <meta property="og:image" content="https://www.sybrai.com/logo.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ======================================================
+   1. ROOT VARIABLES
+====================================================== */
+    :root {
+      --primary: #2b4ecb;
+      --accent: #18c1ff;
+      --bg-dark: #0b1220;
+      --card-bg: #131c2e;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --green: #10b981;
+      --border: rgba(255, 255, 255, .08);
+    }
+
+    /* ======================================================
+   2. RESET & BASE
+====================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: Poppins, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ======================================================
+   3. ANIMATIONS
+====================================================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scanline {
+      0% {
+        top: -10%;
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 110%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes borderPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(43, 78, 203, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(43, 78, 203, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(43, 78, 203, 0);
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    /* ======================================================
+   4. UTILITY CLASSES
+====================================================== */
+    .reveal-text {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal-text.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-100 {
+      transition-delay: 0.1s;
+    }
+
+    .delay-200 {
+      transition-delay: 0.2s;
+    }
+
+    .delay-300 {
+      transition-delay: 0.3s;
+    }
+
+    /* ======================================================
+   5. HEADER
+====================================================== */
+    .site-header {
+      background: rgba(11, 18, 32, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 50px;
+      /* Bigger Header Padding */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    /* Bigger Logo */
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #18c1ff;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: #18c1ff;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      width: 30px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      transition: transform 0.3s, opacity 0.25s, background 0.25s;
+      display: block;
+    }
+
+    .menu-btn.open span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-btn.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-btn.open span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    @media (max-width: 900px) {
+      .site-header {
+        padding: 15px 25px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(2, 6, 23, 0.98);
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 30px 0;
+        display: flex;
+        transform: translateY(-10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+        z-index: 999;
+      }
+
+      .nav-links a {
+        font-size: 20px;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .menu-btn {
+        display: flex;
+      }
+    }
+
+    /* ======================================================
+   6. HERO & CONTAINER (SUPER SIZED)
+====================================================== */
+    .about-hero {
+      padding: 220px 0 140px;
+      /* Taller Hero Section */
+      text-align: center;
+      background: radial-gradient(circle at top, #1b2e4b 0%, #0b1220 70%);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* GRID BACKGROUND */
+    .about-hero::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(600px) rotateX(60deg);
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% {
+        transform: perspective(600px) rotateX(60deg) translateY(0);
+      }
+
+      100% {
+        transform: perspective(600px) rotateX(60deg) translateY(60px);
+      }
+    }
+
+    /* >>> SUPER WIDE CONTAINER <<< */
+    .container {
+      max-width: 1600px;
+      margin: auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-hero h1 {
+      font-size: 5.5rem;
+      /* Bigger Title */
+      font-weight: 800;
+      color: white;
+      letter-spacing: -3px;
+      line-height: 1.1;
+      text-shadow: 0 0 30px rgba(43, 78, 203, 0.6);
+      margin-bottom: 15px;
+    }
+
+    .typewriter {
+      display: inline-block;
+      border-right: 5px solid var(--accent);
+      padding-right: 8px;
+      animation: blink 0.7s step-end infinite;
+    }
+
+    .about-hero h2 {
+      font-family: 'Share Tech Mono';
+      color: var(--green);
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ======================================================
+   7. MISSION (SUPER SIZED)
+====================================================== */
+    .mission-box {
+      margin-top: 80px;
+      background: rgba(19, 28, 46, 0.85);
+      backdrop-filter: blur(8px);
+      /* >>> HUGE PADDING <<< */
+      padding: 100px 80px;
+      border-radius: 6px;
+      border-left: 6px solid var(--primary);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-box:hover {
+      animation: borderPulse 2s infinite;
+    }
+
+    .mission-box h3 {
+      color: var(--accent);
+      margin-bottom: 25px;
+      font-size: 2.2rem;
+    }
+
+    .mission-box p {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .about-visual-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 140px;
+      align-items: center;
+    }
+
+    /* >>> HUGE VISUAL <<< */
+    .about-visual-image {
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(43, 78, 203, 0.25);
+      border: 1px solid var(--border);
+      position: relative;
+      min-height: 550px;
+      /* Very Tall Image */
+    }
+
+    .about-visual-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-visual-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba(43, 78, 203, 0.15) 100%);
+      pointer-events: none;
+    }
+
+    .about-visual-info h4 {
+      font-size: 3.5rem;
+      margin-bottom: 25px;
+      line-height: 1.1;
+    }
+
+    .about-visual-info p {
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 40px;
+      font-size: 1.25rem;
+    }
+
+    .about-visual-cta {
+      display: inline-block;
+      padding: 22px 55px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: white;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(43, 78, 203, 0.4);
+      font-size: 1.2rem;
+    }
+
+    .about-visual-cta:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(43, 78, 203, 0.6);
+    }
+
+    /* ======================================================
+   8. SERVICES (SUPER SIZED)
+====================================================== */
+    .what-we-do-section {
+      padding: 160px 0;
+      background: #0f1825;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      display: block;
+      text-align: center;
+      color: var(--accent);
+      font-family: 'Share Tech Mono';
+      letter-spacing: 3px;
+      font-size: 1.2rem;
+      margin-bottom: 100px;
+    }
+
+    /* >>> WIDE GRID (400px minimum) <<< */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 50px;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      /* >>> BIG PADDING <<< */
+      padding: 70px 50px;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      transition: .4s;
+      min-height: 400px;
+      /* Very Tall Cards */
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--accent);
+      box-shadow: 0 0 20px var(--accent);
+      transition: 0.6s;
+    }
+
+    .service-card:hover::before {
+      animation: scanline 1.5s linear infinite;
+    }
+
+    .service-icon {
+      font-size: 5rem;
+      /* Giant Icons */
+      color: var(--primary);
+      margin-bottom: 40px;
+      transition: .3s;
+    }
+
+    .service-card:hover .service-icon {
+      color: var(--accent);
+      transform: scale(1.15);
+    }
+
+    .service-card h3 {
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 1.2rem;
+    }
+
+    /* ======================================================
+   9. TEAM (SUPER SIZED)
+====================================================== */
+    .team-section {
+      padding: 160px 0;
+      text-align: center;
+    }
+
+    /* >>> WIDE TEAM GRID (380px minimum) <<< */
+    .team-grid {
+      margin-top: 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 60px;
+    }
+
+    .team-member-card {
+      background: var(--card-bg);
+      padding: 0;
+      padding-bottom: 40px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: .4s;
+    }
+
+    .team-member-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-8px);
+    }
+
+    /* >>> HUGE PORTRAITS (500px tall) <<< */
+    .member-image-container {
+      width: 100%;
+      height: 500px;
+      margin: 0;
+      border-radius: 0;
+      overflow: hidden;
+      border-bottom: 5px solid var(--primary);
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .member-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+
+    .team-member-card:hover .member-image-container img {
+      transform: scale(1.08);
+    }
+
+    .team-member-card h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .team-member-card span {
+      color: var(--accent);
+      font-family: 'Share Tech Mono';
+      font-size: 1.1rem;
+    }
+
+    /* ======================================================
+   10. FOOTER
+====================================================== */
+    .site-footer {
+      background: #080d16;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-links a {
+      margin: 0 20px;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .footer-bottom {
+      margin-top: 50px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    /* RESPONSIVE SCALING */
+    @media (max-width: 1200px) {
+      .container {
+        max-width: 100%;
+        padding: 0 30px;
+      }
+
+      .about-hero h1 {
+        font-size: 4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-hero h1 {
+        font-size: 3rem;
+      }
+
+      .about-visual-row {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .mission-box {
+        padding: 50px 30px;
+      }
+
+      /* Smaller padding on mobile to fit screen */
+      .services-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Stack vertically */
+      .service-card,
+      .team-member-card {
+        min-width: auto;
+      }
+
+      .member-image-container {
+        height: 450px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="Sybrai Logo">
+      </a>
+    </div>
+
+    <div class="menu-btn" id="menuBtn" role="button" aria-label="Toggle navigation" aria-expanded="false" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="services.html">Services</a>
+      <a href="Start Training.html">Learn</a>
+      <a href="about.html">About</a>
+      <a href="vision.html">Vision</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <section class="about-hero">
+    <div class="container">
+      <h1 class="reveal-text"><span class="typewriter">ABOUT SYBRAI</span></h1>
+      <h2 class="reveal-text delay-100">Autonomous Digital Defense</h2>
+
+      <div class="mission-box reveal-text delay-200">
+        <h3><i class="fa-solid fa-rocket"></i> Our Mission</h3>
+        <p>We build AI-driven autonomous cybersecurity systems that predict, detect, and neutralize threats before
+          damage occurs. In an era of infinite connections, we provide infinite security.</p>
+      </div>
+
+      <div class="about-visual-row reveal-text delay-300">
+        <div class="about-visual-image">
+          <img src="ai image.png" alt="Autonomous Defense Dashboard">
+        </div>
+        <div class="about-visual-info">
+          <h4>AI-Powered Immunity</h4>
+          <p>Our systems don't just block; they learn. By analyzing traffic patterns in real-time, SYBRAI creates a
+            self-healing digital immune system for your enterprise infrastructure.</p>
+          <a class="about-visual-cta">Request Audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="what-we-do-section">
+    <div class="container">
+      <h2 class="section-title reveal-text">What We Do</h2>
+      <span class="section-subtitle reveal-text delay-100">Predict. Protect. Prevent.</span>
+
+      <div class="services-grid">
+        <div class="service-card reveal-text delay-100">
+          <i class="fa-solid fa-brain service-icon"></i>
+          <h3>Threat Intelligence</h3>
+          <p>Utilizing Neural Networks to identify zero-day exploits before they execute.</p>
+        </div>
+        <div class="service-card reveal-text delay-200">
+          <i class="fa-solid fa-shield service-icon"></i>
+          <h3>Zero-Touch Defense</h3>
+          <p>Automated countermeasures that isolate infected nodes in milliseconds.</p>
+        </div>
+        <div class="service-card reveal-text delay-300">
+          <i class="fa-solid fa-network-wired service-icon"></i>
+          <h3>Network Security</h3>
+          <p>End-to-end encryption and firewall auditing for enterprise-grade protection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="container">
+      <h2 class="reveal-text section-title">Leadership</h2>
+      <p class="reveal-text delay-100" style="color:var(--text-muted); font-size: 1.2rem; margin-bottom: 20px;">
+        Architects of the Secure Future</p>
+
+      <div class="team-grid">
+        <div class="team-member-card reveal-text delay-100">
+          <div class="member-image-container">
+            <img src="sai website.jpg" alt="A. Saikiran">
+          </div>
+          <h3>A. Saikiran</h3>
+          <span>Founder & CEO</span>
+        </div>
+        <div class="team-member-card reveal-text delay-200">
+          <div class="member-image-container">
+            <img src="muneera.jpg" alt="Muneera">
+          </div>
+          <h3>Muneera</h3>
+          <span>Co-Founder & CTO</span>
+        </div>
+        <div class="team-member-card reveal-text delay-300">
+          <div class="member-image-container">
+            <img src="1762533506575.jpg" alt="P. Shyam Prasad">
+          </div>
+          <h3>P. Shyam Prasad</h3>
+          <span>Chief Marketing Officer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script>
+    // Mobile menu behavior
+    (function () {
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+      if (!menuBtn || !navLinks) return;
+
+      function openMenu() {
+        menuBtn.classList.add('open');
+        navLinks.classList.add('active');
+        document.body.classList.add('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closeMenu() {
+        menuBtn.classList.remove('open');
+        navLinks.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+      function toggleMenu() {
+        if (navLinks.classList.contains('active')) closeMenu(); else openMenu();
+      }
+      menuBtn.addEventListener('click', toggleMenu);
+      menuBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); } });
+      document.addEventListener('click', (e) => { if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('active')) closeMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinks.classList.contains('active')) closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 900 && navLinks.classList.contains('active')) closeMenu(); });
+    })();
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll('.reveal-text').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>

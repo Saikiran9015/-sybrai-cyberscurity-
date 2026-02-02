@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sybrai Vision: Global Digital Confidence & AI Security</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sybrai's vision is to build a secure world where everyone can use digital technology with full confidence through ethical AI-powered defense.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.sybrai.com/vision.html">
+    <meta property="og:title" content="Sybrai Vision: Global Digital Confidence & AI Security">
+    <meta property="og:description"
+        content="Building a safer internet through predictive AI defense and global cyber awareness.">
+    <meta property="og:image" content="https://www.sybrai.com/logo.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- 1. VARIABLES & RESET (UPDATED TO MATCH LOGO) --- */
+        :root {
+            /* LOGO COLORS */
+            --cyan: #00ecff;
+            /* Top light part of logo */
+            --blue: #2b4ecb;
+            /* Middle part */
+            --purple: #9d00ff;
+            /* Bottom/End of logo */
+
+            /* The Logo Gradient */
+            --logo-gradient: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 50%, var(--purple) 100%);
+
+            /* BACKGROUNDS */
+            --bg-dark: #050505;
+            /* Pure Black background like the logo */
+            --card-bg: #111115;
+            /* Slightly lighter for cards */
+
+            /* TEXT */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --secure-green: #10b981;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-top: var(--header-height);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- 2. RESPONSIVE HEADER --- */
+        .global-header {
+            background-color: rgba(5, 5, 5, 0.85);
+            /* Dark transparent header */
+            backdrop-filter: blur(15px);
+            height: var(--header-height);
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Desktop Nav */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--logo-gradient);
+            /* Gradient underline */
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* --- 3. HERO SECTION --- */
+        .vision-hero {
+            padding: 80px 0 60px;
+            /* Subtle purple glow from top */
+            background: radial-gradient(circle at 50% -20%, rgba(157, 0, 255, 0.2) 0%, var(--bg-dark) 70%);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            /* Apply Logo Gradient to Text */
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Glow effect */
+            filter: drop-shadow(0 0 20px rgba(43, 78, 203, 0.4));
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--cyan);
+            /* Updated to Cyan */
+            font-family: 'Share Tech Mono', monospace;
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
+
+        .hero-statement {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            /* Gradient Border */
+            border-left: 4px solid;
+            border-image: var(--logo-gradient) 1;
+            padding-left: 20px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* --- 4. ANIMATION SECTION --- */
+        .network-model {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .core {
+            width: 120px;
+            height: 120px;
+            /* Purple Core */
+            background: rgba(157, 0, 255, 0.2);
+            border-radius: 50%;
+            box-shadow: 0 0 50px var(--purple);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            animation: pulse 2s infinite alternate;
+        }
+
+        .network-container-ring {
+            position: absolute;
+            width: min(80vw, 500px);
+            height: min(80vw, 500px);
+            /* Cyan Ring */
+            border: 2px dashed rgba(0, 236, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 30s linear infinite;
+        }
+
+        .endpoint {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            /* Gradient Border for endpoints */
+            border: 2px solid var(--cyan);
+            box-shadow: 0 0 15px var(--cyan);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            color: white;
+            z-index: 6;
+            animation: fadeAndMove 4s ease-out forwards;
+        }
+
+        .endpoint i {
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .endpoint:nth-child(3) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0.5s;
+            border-color: var(--purple);
+            box-shadow: 0 0 15px var(--purple);
+        }
+
+        .endpoint:nth-child(4) {
+            bottom: 15%;
+            right: 15%;
+            animation-delay: 1s;
+            border-color: var(--blue);
+        }
+
+        .endpoint:nth-child(5) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        .endpoint:nth-child(6) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 2s;
+            border-color: var(--purple);
+            box-shadow: 0 0 15px var(--purple);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 40px var(--blue);
+            }
+
+            100% {
+                transform: scale(1.1);
+                box-shadow: 0 0 60px var(--purple);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeAndMove {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* --- 5. VISION PILLARS --- */
+        .vision-pillars {
+            padding: 50px 20px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .pillar-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Gradient Border via Pseudo-element */
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--logo-gradient);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            /* Purple glow on hover */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(157, 0, 255, 0.2);
+            border-color: rgba(157, 0, 255, 0.3);
+        }
+
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            /* Gradient Icon */
+            background: var(--logo-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pillar-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .pillar-card strong {
+            color: var(--cyan);
+        }
+
+        /* --- 6. CTA SECTION --- */
+        .cta-section {
+            text-align: center;
+            padding: 0 20px 80px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            /* Gradient Button */
+            background: var(--logo-gradient);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(43, 78, 203, 0.4);
+            border: 1px solid transparent;
+        }
+
+        .cta-btn:hover {
+            box-shadow: 0 0 30px var(--cyan);
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        /* --- 7. MOBILE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: #0f172a;
+                /* Dark background for mobile menu */
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                border-top: 1px solid #333;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+            }
+
+            .nav-links a {
+                padding: 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                color: white;
+            }
+
+            .hero-statement {
+                border-left: none;
+                border-top: 4px solid;
+                border-image: var(--logo-gradient) 1;
+                padding-left: 20px;
+                padding-top: 20px;
+                font-size: 1rem;
+            }
+
+            .network-model {
+                height: 350px;
+            }
+
+            .endpoint {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .cta-btn {
+                width: 100%;
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="global-header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Sybrai Logo">
+            </a>
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="nav-links" id="nav-links">
+            <a href="services.html">Services</a>
+            <a href="Start Training.html">Learn</a>
+            <a href="about.html">About</a>
+            <a href="vision.html">Vision</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="vision-hero">
+        <div class="container">
+            <h1 class="hero-title">A World of Digital Confidence</h1>
+            <h2 class="hero-subtitle">GLOBAL GUARDIAN AI: 24/7 PROTECTION</h2>
+
+            <p class="hero-statement">
+                Our vision is to build a world where every human, business, and government can use digital technology
+                with full confidence. We envision an environment where **AI-powered defense systems** operate silently
+                in the background, making the internet safer every day. Cyber_AI is committed to becoming the global
+                guardian of the digital world.
+            </p>
+        </div>
+    </section>
+
+    <section class="network-model">
+        <div class="network-container-ring"></div>
+
+        <div class="core">
+            <i class="fa-solid fa-brain" style="font-size: 3rem; color: white;"></i>
+        </div>
+
+        <div class="endpoint"><i class="fa-solid fa-school"></i></div>
+        <div class="endpoint"><i class="fa-solid fa-building"></i></div>
+        <div class="endpoint"><i class="fa-solid fa-hospital"></i></div>
+        <div class="endpoint"><i class="fa-solid fa-user-gear"></i></div>
+    </section>
+
+    <section class="vision-pillars container">
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-users-line"></i></div>
+            <h3>1. Equality of Protection</h3>
+            <p>
+                We remove security inequality. Powerful AI-driven protection must be **affordable** for small
+                businesses, schools, and local governments. We bridge the gap so a village school is as safe as a metro
+                corporation.
+            </p>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h3>2. Ethical Leadership</h3>
+            <p>
+                Sybrai is committed to **privacy and transparency**. Our AI protects people without misusing data. By
+                adhering to the highest ethical principles, we earn the long-term trust of citizens worldwide.
+            </p>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-book-reader"></i></div>
+            <h3>3. Global Cyber Awareness</h3>
+            <p>
+                Education is defense. We create cyber-aware citizens through global partnerships, helping millions
+                understand online safety and **identify scams** before they fall victim.
+            </p>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-microchip"></i></div>
+            <h3>4. Predictive Edge</h3>
+            <p>
+                We push the boundaries of AI and **quantum-inspired security**. Our systems learn from every global
+                incident, sharing intelligence to continuously strengthen the digital immune system.
+            </p>
+        </div>
+    </section>
+
+    <section class="cta-section container">
+        <a href="services.html" class="cta-btn">See Our AI Solutions</a>
+    </section>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        const icon = menuBtn.querySelector('i');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+            // Toggle Icon between Bars and X
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

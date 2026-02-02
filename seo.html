@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sybrai Cybersecurity — Pentesting & Security Guides</title>
+    <meta name="description"
+        content="Sybrai Cybersecurity provides tutorials, tools, and professional services for penetration testing, vulnerability research, and security best practices." />
+    <link rel="canonical" href="https://saikiran9015.github.io/-sybrai-cyberscurity-/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sybrai Cybersecurity — Pentesting & Security Guides" />
+    <meta property="og:description"
+        content="Tutorials, tools, and professional services for penetration testing and vulnerability research." />
+    <meta property="og:url" content="https://saikiran9015.github.io/-sybrai-cyberscurity-/" />
+    <meta property="og:image" content="https://saikiran9015.github.io/-sybrai-cyberscurity-/images/og-image.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sybrai Cybersecurity — Pentesting & Security Guides" />
+    <meta name="twitter:description"
+        content="Tutorials, tools, and professional services for penetration testing and vulnerability research." />
+    <meta name="twitter:image"
+        content="https://saikiran9015.github.io/-sybrai-cyberscurity-/images/twitter-image.png" />
+
+    <meta name="robots" content="index, follow" />
+
+    <!-- JSON-LD: Organization + WebSite -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://saikiran9015.github.io/-sybrai-cyberscurity-/#organization",
+        "name": "Sybrai Cybersecurity",
+        "url": "https://saikiran9015.github.io/-sybrai-cyberscurity-/",
+        "logo": "https://saikiran9015.github.io/-sybrai-cyberscurity-/images/logo.png",
+        "sameAs": [
+          "https://github.com/Saikiran9015",
+          "https://twitter.com/your-handle",
+          "https://www.linkedin.com/in/your-profile"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://saikiran9015.github.io/-sybrai-cyberscurity-/#website",
+        "url": "https://saikiran9015.github.io/-sybrai-cyberscurity-/",
+        "name": "Sybrai Cybersecurity",
+        "publisher": {
+          "@id": "https://saikiran9015.github.io/-sybrai-cyberscurity-/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://saikiran9015.github.io/-sybrai-cyberscurity-/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saikiran9015.github.io/-sybrai-cyberscurity-/" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://saikiran9015.github.io/-sybrai-cyberscurity-/guides/" },
+      { "@type": "ListItem", "position": 3, "name": "Pentesting 101", "item": "https://saikiran9015.github.io/-sybrai-cyberscurity-/guides/pentesting-101" }
+    ]
+  }
+  </script>
+
+    <!-- JSON-LD: Article example -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://saikiran9015.github.io/-sybrai-cyberscurity-/guides/pentesting-101"
+    },
+    "headline": "Pentesting 101: Getting Started",
+    "image": [
+      "https://saikiran9015.github.io/-sybrai-cyberscurity-/images/pentesting-101-cover.png"
+    ],
+    "datePublished": "2026-01-05",
+    "dateModified": "2026-01-05",
+    "author": {
+      "@type": "Person",
+      "name": "Saikiran"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Sybrai Cybersecurity",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://saikiran9015.github.io/-sybrai-cyberscurity-/images/logo.png"
+      }
+    },
+    "description": "An introduction to penetration testing: methodology, tools, and best practices."
+  }
+  </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is penetration testing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Penetration testing is a simulated cyber attack against your application or infrastructure to identify security weaknesses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer consulting services?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — we provide vulnerability assessments and penetration testing services. Contact us for details."
+        }
+      }
+    ]
+  }
+  </script>
+
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #00bcd4;
+            --muted: #9aa6b2;
+            --white: #f8fafc;
+            --radius: 8px;
+            --max: 1000px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, #071024 0%, #071427 100%);
+            color: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent), #6ce0ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #00323a;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+        }
+
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: 600
+        }
+
+        .site-desc {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 2px
+        }
+
+        nav.breadcrumbs {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 12px 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        nav.breadcrumbs a {
+            color: var(--muted);
+            text-decoration: none
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+        }
+
+        .article-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.9rem
+        }
+
+        .hero {
+            width: 100%;
+            height: 220px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            margin: 14px 0;
+            box-shadow: inset 0 -30px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+            margin-top: 14px
+        }
+
+        article {
+            min-width: 0
+        }
+
+        aside {
+            position: relative
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.6rem
+        }
+
+        p.lead {
+            color: var(--muted)
+        }
+
+        ul.tags {
+            display: flex;
+            gap: 8px;
+            padding: 0;
+            list-style: none;
+            margin: 8px 0
+        }
+
+        ul.tags li {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 8px;
+            border-radius: 6px;
+            color: var(--muted);
+            font-size: 0.85rem
+        }
+
+        /* FAQ */
+        .faq .qa {
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.02)
+        }
+
+        .qa button {
+            all: unset;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            width: 100%;
+            cursor: pointer;
+            color: var(--white);
+        }
+
+        .qa .answer {
+            padding: 0 14px 14px 14px;
+            color: var(--muted);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease, padding .28s ease
+        }
+
+        .qa.open .answer {
+            max-height: 400px;
+            padding-top: 10px
+        }
+
+        /* small screens */
+        @media (max-width:880px) {
+            main {
+                grid-template-columns: 1fr;
+                padding-bottom: 50px
+            }
+
+            aside {
+                order: 2
+            }
+        }
+
+        footer {
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-align: center
+        }
+
+        a.cta {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #002b30;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0, 188, 212, 0.12)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" aria-hidden="true">SC</div>
+            <div>
+                <div class="site-title">Sybrai Cybersecurity</div>
+                <div class="site-desc">Pentesting guides, tools and security resources</div>
+            </div>
+        </header>
+
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <a href="#">Guides</a>
+            <span>›</span>
+            <span>Pentesting 101</span>
+        </nav>
+
+        <div class="card">
+            <div class="article-header">
+                <h1>Pentesting 101: Getting Started</h1>
+                <div class="meta">By Saikiran • Jan 05, 2026 • <span class="reading-time">6 min read</span></div>
+                <div class="hero" role="img" aria-label="Pentesting illustration"
+                    style="background-image:url('https://saikiran9015.github.io/-sybrai-cyberscurity-/images/pentesting-101-cover.png')">
+                </div>
+                <p class="lead">An introduction to penetration testing methodology, tools and practical guidelines for
+                    beginners.</p>
+                <ul class="tags">
+                    <li>Penetration Testing</li>
+                    <li>Security</li>
+                    <li>Tutorial</li>
+                </ul>
+            </div>
+
+            <main>
+                <article>
+                    <section>
+                        <h2>Overview</h2>
+                        <p>Penetration testing (pentesting) is a controlled, simulated attack on a system to identify
+                            and fix security weaknesses before an attacker can exploit them. This guide covers scope,
+                            rules of engagement, common tools, and reporting.</p>
+                    </section>
+
+                    <section>
+                        <h2>Methodology</h2>
+                        <ol>
+                            <li>Planning & Reconnaissance</li>
+                            <li>Scanning & Enumeration</li>
+                            <li>Exploitation</li>
+                            <li>Post-Exploitation</li>
+                            <li>Reporting</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h2>Tools</h2>
+                        <p>Start with Nmap, Burp Suite, and Metasploit for hands-on learning; complement with
+                            vulnerability scanners and manual analysis.</p>
+                    </section>
+
+                    <section aria-labelledby="faq-heading" class="faq">
+                        <h2 id="faq-heading">Frequently asked questions</h2>
+
+                        <div class="qa" data-question="What is penetration testing?">
+                            <button aria-expanded="false" type="button">
+                                <span>What is penetration testing?</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <div class="answer">
+                                <p>Penetration testing is a simulated cyber attack against your application or
+                                    infrastructure to identify security weaknesses.</p>
+                            </div>
+                        </div>
+
+                        <div class="qa" data-question="Do you offer consulting services?">
+                            <button aria-expanded="false" type="button">
+                                <span>Do you offer consulting services?</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <div class="answer">
+                                <p>Yes — we provide vulnerability assessments and penetration testing services. Contact
+                                    us via email: contact@sybrai.com.</p>
+                            </div>
+                        </div>
+
+                    </section>
+                </article>
+
+                <aside>
+                    <div style="position:sticky;top:24px">
+                        <div style="margin-bottom:12px">
+                            <div style="font-size:0.95rem;color:var(--muted)">About the author</div>
+                            <div style="font-weight:600">Saikiran</div>
+                            <div style="color:var(--muted);margin-top:6px">Security researcher • Open-source contributor
+                            </div>
+                            <div style="margin-top:10px"><a class="cta" href="https://github.com/Saikiran9015"
+                                    target="_blank" rel="noopener">View GitHub</a></div>
+                        </div>
+
+                        <div style="margin-top:12px">
+                            <div style="font-size:0.95rem;color:var(--muted)">Related guides</div>
+                            <ul style="list-style:none;padding:0;margin:8px 0">
+                                <li><a href="#" style="color:var(--white);text-decoration:none">Secure Coding Basics</a>
+                                </li>
+                                <li><a href="#" style="color:var(--white);text-decoration:none">Vulnerability
+                                        Reporting</a></li>
+                                <li><a href="#" style="color:var(--white);text-decoration:none">Burp Suite Tips</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </main>
+
+            <footer>
+                <div>© 2026 Sybrai Cybersecurity — Built by Saikiran • contact: security@sybrai.com</div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Simple FAQ accordion behavior and accessibility
+        (function () {
+            const qaNodes = document.querySelectorAll('.qa');
+            qaNodes.forEach(node => {
+                const btn = node.querySelector('button');
+                btn.addEventListener('click', () => {
+                    const isOpen = node.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', String(isOpen));
+                });
+            });
+
+            // Simple reading time calculator (approx)
+            const readingTimeEl = document.querySelector('.reading-time');
+            if (readingTimeEl) {
+                const bodyText = document.querySelector('article').innerText;
+                const words = bodyText.trim().split(/\s+/).length;
+                const minutes = Math.max(1, Math.round(words / 200));
+                readingTimeEl.textContent = minutes + ' min read';
+            }
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sybrai Cybersecurity | Secure. Detect. Defend.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Sybrai Cybersecurity provides advanced AI-driven security solutions, threat detection, and penetration testing services to protect your digital infrastructure.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Sybrai Cybersecurity">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sybrai.com/">
+  <meta property="og:title" content="Sybrai Cybersecurity | Secure. Detect. Defend.">
+  <meta property="og:description"
+    content="Advanced AI-driven security solutions, threat detection, and penetration testing services.">
+  <meta property="og:image" content="https://www.sybrai.com/logo.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.sybrai.com/">
+  <meta property="twitter:title" content="Sybrai Cybersecurity | Secure. Detect. Defend.">
+  <meta property="twitter:description"
+    content="Advanced AI-driven security solutions, threat detection, and penetration testing services.">
+  <meta property="twitter:image" content="https://www.sybrai.com/logo.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* --- VARIABLES (UPDATED WITH LOGO COLORS) --- */
+    :root {
+      /* Logo Colors */
+      --primary: #2b4ecb;
+      /* Deep Royal Blue */
+      --primary-dark: #1a369c;
+      --accent: #18c1ff;
+      /* Bright Cyan */
+
+      /* Dark Mode Backgrounds */
+      --dark-bg: #0b1220;
+      /* Very dark navy */
+      --darker-bg: #020617;
+      /* Almost black */
+      --card-bg: #131c2e;
+      /* Card background */
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --glow: 0 0 20px rgba(43, 78, 203, 0.6);
+    }
+
+    /* --- RESET & BASE --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--dark-bg);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* --- UTILITIES & ANIMATIONS --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(24, 193, 255, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(24, 193, 255, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(24, 193, 255, 0);
+      }
+    }
+
+    /* --- HEADER --- */
+    header {
+      background: rgba(11, 18, 32, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 24px;
+      color: white;
+      letter-spacing: 1px;
+    }
+
+    .logo-box {
+      width: 35px;
+      height: 35px;
+      /* Gradient matching the logo */
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+    }
+
+    .logo-box img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      /* Makes the logo icon white if it isn't already */
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      /* Updated Gradient using Logo Colors */
+      background: radial-gradient(circle at center, #1b2e4b 0%, var(--darker-bg) 100%);
+    }
+
+    #hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    /* Glitch Effect Text - Updated Colors */
+    .glitch-text {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      position: relative;
+      /* Shadows updated to Cyan and Blue */
+      text-shadow: 0.05em 0 0 rgba(43, 78, 203, 0.75), -0.025em -0.05em 0 rgba(24, 193, 255, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+      animation: glitch 500ms infinite;
+    }
+
+    .hero:hover .glitch-text {
+      animation: glitch 4s infinite linear alternate-reverse;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .btn-primary {
+      padding: 16px 40px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      /* Logo Gradient applied to Button */
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: pulse-glow 2s infinite;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(24, 193, 255, 0.4);
+    }
+
+    /* --- SECTIONS --- */
+    .section {
+      padding: 100px 50px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 42px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .section h2 span {
+      color: var(--accent);
+    }
+
+    .section p {
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    /* --- SERVICES GRID --- */
+    .grid {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(24, 193, 255, 0.3);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .card h3 {
+      color: white;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin: 0;
+      text-align: left;
+    }
+
+    /* --- TRUST BANNER --- */
+    .trust {
+      background: linear-gradient(90deg, #0b1220, #131c2e);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* --- CTA SECTION --- */
+    .cta {
+      background: linear-gradient(rgba(11, 18, 32, 0.9), rgba(11, 18, 32, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      position: relative;
+      padding: 120px 50px;
+      text-align: center;
+      background-attachment: fixed;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: var(--darker-bg);
+      padding: 80px 50px 30px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    footer h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    footer a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: 0.2s;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .footer-bottom {
+      margin-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 25px;
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .section {
+        padding: 60px 25px;
+      }
+    }
+
+    .site-header {
+      background-color: #f8fafc;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 40px;
+    }
+
+    /* NAV */
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: black;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover {
+      color: #2b4ecb;
+    }
+
+    /* HAMBURGER */
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      width: 26px;
+      height: 3px;
+      background: black;
+      margin: 4px 0;
+      transition: .3s;
+    }
+
+    /* ================= HEADER ================= */
+    .site-header {
+      background: rgba(11, 18, 32, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo img {
+      height: 42px;
+    }
+
+    /* NAV LINKS */
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #18c1ff;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: #18c1ff;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HAMBURGER */
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      width: 26px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+      transition: transform 0.3s, opacity 0.25s, background 0.25s;
+      display: block;
+    }
+
+    /* Hamburger open state: animate into an X */
+    .menu-btn.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-btn.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-btn.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background: #020617;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 30px 0;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
+    /* Enhanced mobile nav: animated panel and body lock */
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 12px 18px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(2, 6, 23, 0.98);
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 0 28px;
+        display: flex;
+        /* keep flex for layout but hidden via transform/opacity */
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 280ms cubic-bezier(.2, .9, .2, 1), opacity 240ms ease;
+        z-index: 999;
+      }
+
+      .nav-links a {
+        font-size: 18px;
+        color: var(--text-main);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Prevent background scroll when menu open */
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .menu-btn span {
+        background: white;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="Sybrai Logo">
+      </a>
+    </div>
+
+    <div class="menu-btn" id="menuBtn" role="button" aria-label="Toggle navigation" aria-expanded="false" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="services.html">Services</a>
+      <a href="Start Training.html">Learn</a>
+      <a href="about.html">About</a>
+      <a href="vision.html">Vision</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+
+  <section class="hero">
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-content">
+      <h1 class="glitch-text">Secure. Detect. Defend.</h1>
+      <p>Advanced AI-driven cybersecurity protecting your digital infrastructure.</p>
+      <button class="btn-primary">Initialize Security Assessment</button>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <h2>Cybersecurity <span>Services</span></h2>
+    <p>Comprehensive defense mechanisms tailored for modern threats.</p>
+
+    <div class="grid">
+      <div class="card reveal">
+        <div class="card-icon"></div>
+        <h3>Threat Detection</h3>
+        <p>Real-time monitoring using heuristic analysis to identify and neutralize zero-day threats.</p>
+      </div>
+      <div class="card reveal" style="transition-delay: 100ms">
+        <div class="card-icon"></div>
+        <h3>Network Security</h3>
+        <p>Fortify your perimeter with next-gen firewalls and encrypted traffic analysis.</p>
+      </div>
+      <div class="card reveal" style="transition-delay: 200ms">
+        <div class="card-icon"></div>
+        <h3>Cloud Defense</h3>
+        <p>Security posture management for AWS, Azure, and hybrid cloud environments.</p>
+      </div>
+      <div class="card reveal" style="transition-delay: 300ms">
+        <div class="card-icon"></div>
+        <h3>Penetration Testing</h3>
+        <p>Ethical hacking to expose vulnerabilities before malicious actors exploit them.</p>
+        <br>
+        <a href="seo.html" style="color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 600;">Read
+          Guide →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section trust reveal">
+    <h2>Compliance & <span>Standards</span></h2>
+    <p>Fully compliant with ISO 27001, GDPR, SOC 2, and NIST cybersecurity frameworks.</p>
+  </section>
+
+  <section class="cta">
+    <div class="cta-content reveal">
+      <h2>Ready to Secure Your Future?</h2>
+      <p>Don't wait for a breach. Talk to our tactical response team today.</p>
+      <br>
+      <button class="btn-primary">Contact Security Team</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Sybrai Cybersecurity</h3>
+        <p>Defending the digital frontier with intelligence and precision.</p>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <a href="#">Threat Detection</a>
+        <a href="#">Cloud Security</a>
+        <a href="#">Penetration Testing</a>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Partners</a>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <a href="#">security@sybrai.com</a>
+        <a href="#">+91 6301576935</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Sybrai Cybersecurity. Secure. Detect. Defend.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu behavior: open/close, keyboard, outside click, escape, resize
+    (function () {
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+      if (!menuBtn || !navLinks) return;
+
+      function openMenu() {
+        menuBtn.classList.add('open');
+        navLinks.classList.add('active');
+        document.body.classList.add('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeMenu() {
+        menuBtn.classList.remove('open');
+        navLinks.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleMenu() {
+        if (navLinks.classList.contains('active')) closeMenu(); else openMenu();
+      }
+
+      menuBtn.addEventListener('click', toggleMenu);
+
+      menuBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+      });
+
+      // Close when clicking outside the open menu
+      document.addEventListener('click', (e) => {
+        if (!navLinks.classList.contains('active')) return;
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) closeMenu();
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) closeMenu();
+      });
+
+      // Ensure menu is closed when resizing to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) closeMenu();
+      });
+
+    })();
+    /* -----------------------------------------------
+     * 1. SCROLL REVEAL ANIMATION
+     * ----------------------------------------------- */
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      const elementVisible = 100;
+
+      revealElements.forEach((reveal) => {
+        const elementTop = reveal.getBoundingClientRect().top;
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    /* -----------------------------------------------
+     * 2. CANVAS PARTICLE NETWORK ANIMATION (HERO)
+     * ----------------------------------------------- */
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particlesArray;
+
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    const mouse = { x: null, y: null, radius: 150 };
+
+    window.addEventListener('mousemove', (event) => {
+      mouse.x = event.x;
+      mouse.y = event.y;
+    });
+
+    class Particle {
+      constructor(x, y, directionX, directionY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.directionX = directionX;
+        this.directionY = directionY;
+        this.size = size;
+        this.color = color;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        // Using the Logo's Accent Color for particles
+        ctx.fillStyle = '#18c1ff';
+        ctx.fill();
+      }
+
+      update() {
+        if (this.x > canvas.width || this.x < 0) {
+          this.directionX = -this.directionX;
+        }
+        if (this.y > canvas.height || this.y < 0) {
+          this.directionY = -this.directionY;
+        }
+
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius + this.size) {
+          if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+            this.x += 3;
+          }
+          if (mouse.x > this.x && this.x > this.size * 10) {
+            this.x -= 3;
+          }
+          if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+            this.y += 3;
+          }
+          if (mouse.y > this.y && this.y > this.size * 10) {
+            this.y -= 3;
+          }
+        }
+
+        this.x += this.directionX;
+        this.y += this.directionY;
+
+        this.draw();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      let numberOfParticles = (canvas.height * canvas.width) / 9000;
+
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = (Math.random() * 2) + 1;
+        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+        let directionX = (Math.random() * 1) - 0.5;
+        let directionY = (Math.random() * 1) - 0.5;
+        let color = '#18c1ff';
+
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+      }
+    }
+
+    function connect() {
+      let opacityValue = 1;
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+            ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+
+          if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+            opacityValue = 1 - (distance / 20000);
+            // Connecting lines in logo accent color
+            ctx.strokeStyle = 'rgba(24, 193, 255,' + opacityValue + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+      connect();
+    }
+
+    init();
+    animate();
+
+  </script>
+
+</body>
+
+</html>

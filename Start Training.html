@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Security Awareness Training - Sybrai</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Build a human firewall with Sybrai's security awareness training, phishing simulations, and educational workshops.">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --primary: #2b4ecb;
+            /* Royal Blue */
+            --accent: #18c1ff;
+            /* Cyan */
+            --bg-dark: #0b1220;
+            /* Deep Navy */
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: #131c2e;
+        }
+
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-dark);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .awareness-training {
+            padding: 100px 0;
+            text-align: center;
+            background: radial-gradient(circle at top center, #1b2e4b 0%, var(--bg-dark) 80%);
+        }
+
+        /* --- SECTION HEADER --- */
+        .detail-title {
+            font-size: 38px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .detail-title span {
+            color: var(--accent);
+        }
+
+        .detail-subtitle {
+            color: var(--text-muted);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 18px;
+            color: var(--accent);
+            max-width: 900px;
+            margin: 0 auto 50px;
+            padding: 20px;
+            border-top: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* --- PILLAR GRID LAYOUT --- */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* --- PILLAR CARD STYLING --- */
+        .pillar-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 35px 25px;
+            border-radius: 12px;
+            text-align: left;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary);
+        }
+
+        .pillar-icon {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            line-height: 1;
+            text-shadow: 0 0 10px rgba(24, 193, 255, 0.5);
+        }
+
+        .pillar-card h3 {
+            font-size: 22px;
+            color: white;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .pillar-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pillar-card ul li {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pillar-card ul li::before {
+            content: "▶";
+            /* Simple right arrow for list items */
+            color: var(--primary);
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pillar-card:hover ul li::before {
+            color: var(--accent);
+        }
+
+        /* --- CALL TO ACTION BUTTON --- */
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            margin-top: 60px;
+            background: var(--accent);
+            color: var(--bg-dark);
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(24, 193, 255, 0.5);
+        }
+
+        .cta-button:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 30px var(--primary);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* --- ANIMATION CLASSES --- */
+        .reveal-flow {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-flow.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            .detail-title {
+                font-size: 30px;
+            }
+
+            .quote {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .awareness-training {
+                padding: 80px 0;
+            }
+        }
+
+        /* --- SITE HEADER (from index.html) --- */
+        .site-header {
+            background: rgba(11, 18, 32, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo img {
+            height: 42px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #18c1ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #18c1ff;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-btn span {
+            width: 26px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+            transition: transform 0.3s, opacity 0.25s, background 0.25s;
+            display: block;
+        }
+
+        .menu-btn.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-btn.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .menu-btn.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 64px;
+                right: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(2, 6, 23, 0.98);
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
+                padding: 18px 0 28px;
+                display: flex;
+                transform: translateY(-8px);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 280ms cubic-bezier(.2, .9, .2, 1), opacity 240ms ease;
+                z-index: 999;
+            }
+
+            .nav-links a {
+                font-size: 18px;
+                color: var(--text-main);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Sybrai Logo">
+            </a>
+        </div>
+
+        <div class="menu-btn" id="menuBtn" role="button" aria-label="Toggle navigation" aria-expanded="false"
+            tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="services.html">Services</a>
+            <a href="Start Training.html">Learn</a>
+            <a href="about.html">About</a>
+            <a href="vision.html">Vision</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <section class="awareness-training">
+        <div class="container">
+
+            <h2 class="detail-title reveal-flow" style="transition-delay: 0s;">Building the <span>Human Firewall</span>
+            </h2>
+            <p class="detail-subtitle reveal-flow" style="transition-delay: 0.1s;"> Transforming Employees and Citizens
+                into Your First Line of Defense</p>
+
+            <div class="quote reveal-flow" style="transition-delay: 0.2s;">
+                <p>"The greatest threat to cybersecurity is not technology, but human error. We train your teams to spot
+                    the attacks your software misses."</p>
+            </div>
+
+            <div class="pillar-grid">
+
+                <div class="pillar-card reveal-flow" style="transition-delay: 0.4s;">
+                    <div class="pillar-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>1. Assess & Simulation</h3>
+                    <ul>
+                        <li>**Phishing Simulation Campaigns:** Realistic, controlled email attacks to test
+                            vulnerability.</li>
+                        <li>**Vishing (Voice Phishing) Tests:** Evaluating phone-based social engineering resilience.
+                        </li>
+                        <li>**Tailored Risk Reporting:** Measuring individual and departmental susceptibility scores.
+                        </li>
+                        <li>**Pre-Training Baseline Audit:** Establishing initial knowledge gaps and specific needs.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card reveal-flow" style="transition-delay: 0.6s;">
+                    <div class="pillar-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>2. Education & Workshops</h3>
+                    <ul>
+                        <li>**Live Hack Demos:** Showing real-world consequences of weak passwords and unsecured Wi-Fi.
+                        </li>
+                        <li>**Insider Threat Workshops:** Training employees on recognizing and reporting suspicious
+                            internal activity.</li>
+                        <li>**Social Media Hygiene:** Guidelines for official and personal accounts to prevent corporate
+                            leakage.</li>
+                        <li>**Data Handling Protocols:** Securely managing sensitive data according to compliance
+                            standards.</li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card reveal-flow" style="transition-delay: 0.8s;">
+                    <div class="pillar-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>3. Reinforcement & Metrics</h3>
+                    <ul>
+                        <li>**Micro-Learning Modules:** Short, frequent sessions to reinforce key concepts and improve
+                            retention.</li>
+                        <li>**Post-Training Analysis:** Comparing current risk scores against the baseline audit.</li>
+                        <li>**Gamified Learning:** Engaging employees through security quizzes, leaderboards, and
+                            rewards.</li>
+                        <li>**Compliance Reporting:** Providing audit logs for government and regulatory bodies.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <a href="#" class="cta-button reveal-flow" style="transition-delay: 1s;">Start Your Team's Security
+                Training</a>
+
+        </div>
+    </section>
+
+    <section class="resources-section reveal-flow" style="padding: 80px 0; background: rgba(19, 28, 46, 0.4);">
+        <div class="container">
+            <h2 class="detail-title">Cybersecurity <span>Learning Resources</span></h2>
+            <p class="detail-subtitle">Expand your knowledge with these industry-standard resources.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fa-solid fa-book"></i></div>
+                    <h3>Foundations</h3>
+                    <ul>
+                        <li><a href="seo.html"
+                                style="color: var(--accent); font-weight: 600; text-decoration: none;">Pentesting 101
+                                Guide</a></li>
+                        <li><a href="https://owasp.org/www-project-top-ten/" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">OWASP
+                                Top 10 Risks</a></li>
+                        <li><a href="https://www.nist.gov/cyberframework" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">NIST Security Framework</a>
+                        </li>
+                        <li><a href="https://www.cisa.gov/cyber-essentials" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">CISA Cyber Essentials</a></li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <h3>Free Courses</h3>
+                    <ul>
+                        <li><a href="https://www.cybrary.it/" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">Cybrary Free Training</a></li>
+                        <li><a href="https://www.sans.org/free-resources/" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">SANS Free Resources</a></li>
+                        <li><a href="https://picoctf.org/" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">picoCTF Learning Platform</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                    <h3>Stay Updated</h3>
+                    <ul>
+                        <li><a href="https://thehackernews.com/" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">The Hacker News</a></li>
+                        <li><a href="https://krebsonsecurity.com/" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">Krebs on Security</a></li>
+                        <li><a href="https://www.darkreading.com/" target="_blank"
+                                style="color: var(--text-muted); text-decoration: none;">Dark Reading</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* --- SCROLL ANIMATION OBSERVER --- */
+        const observerOptions = {
+            threshold: 0.1, // Trigger when 10% of element is visible
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Apply 'active' class to start CSS animation
+                    entry.target.classList.add('active');
+
+                    // Stop observing once revealed
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-flow').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+    <script>
+        // Mobile menu behavior: open/close, keyboard, outside click, escape, resize
+        (function () {
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+            if (!menuBtn || !navLinks) return;
+
+            function openMenu() {
+                menuBtn.classList.add('open');
+                navLinks.classList.add('active');
+                document.body.classList.add('menu-open');
+                menuBtn.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeMenu() {
+                menuBtn.classList.remove('open');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            function toggleMenu() { if (navLinks.classList.contains('active')) closeMenu(); else openMenu(); }
+
+            menuBtn.addEventListener('click', toggleMenu);
+            menuBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); } });
+
+            document.addEventListener('click', (e) => { if (!navLinks.classList.contains('active')) return; if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) closeMenu(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinks.classList.contains('active')) closeMenu(); });
+            window.addEventListener('resize', () => { if (window.innerWidth > 768 && navLinks.classList.contains('active')) closeMenu(); });
+        })();
+    </script>
+
+</body>
+
+</html>
