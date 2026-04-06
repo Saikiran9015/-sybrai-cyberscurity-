@@ -39,7 +39,7 @@ export default function AnomalySimulator() {
            log("🚨 CRITICAL: UNUSUAL TRAFFIC SPIKE DETECTED!");
         }
 
-        const newData = [...prev.slice(1), { time: nextTime, traffic: nextTraffic }];
+        const newData = [...prev.slice(1), { time: nextTime, traffic: nextTraffic, anomaly: 0 }];
         return newData;
       });
     }, 1000);
