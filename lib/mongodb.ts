@@ -13,7 +13,7 @@ if (!cached) {
 }
 
 async function connectDB() {
-  const MONGODB_URI = process.env.MONGODB_URI || "";
+  const MONGODB_URI = (process.env.MONGODB_URI || "").trim();
   
   if (!MONGODB_URI) {
     throw new Error("Please define MONGODB_URI in your .env.local file");

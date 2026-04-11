@@ -40,7 +40,10 @@ export default function PaymentGate({ user, onSuccess }: PaymentGateProps) {
       const orderRes = await fetch("/api/payment/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: 50 }),
+        body: JSON.stringify({ 
+          amount: 50,
+          userId: user.id || user._id 
+        }),
       });
       const orderData = await orderRes.json();
 
@@ -125,25 +128,25 @@ export default function PaymentGate({ user, onSuccess }: PaymentGateProps) {
       <h2 className="text-3xl font-orbitron font-bold text-white mb-4 tracking-tighter">
         ACCESS <span className="text-cyan-neon">RESTRICTED</span>
       </h2>
-      
+
       <p className="text-gray-400 mb-8 leading-relaxed">
-        Agent <strong>{user.name}</strong>, you have not unlocked the Ethical Hacking Basics module yet. 
-        Pay a one-time enrollment fee of <strong>₹50</strong> to gain lifetime access to all interactive labs, 
+        Agent <strong>{user.name}</strong>, you have not unlocked the Ethical Hacking Basics module yet.
+        Pay a one-time enrollment fee of <strong>₹50</strong> to gain lifetime access to all interactive labs,
         XP rewards, and certifications.
       </p>
 
       <div className="grid grid-cols-2 gap-4 w-full mb-10">
         <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex flex-col items-center">
-           <ShieldCheck className="w-5 h-5 text-cyan-neon mb-2" />
-           <span className="text-[10px] text-gray-500 uppercase font-mono">Full Access</span>
+          <ShieldCheck className="w-5 h-5 text-cyan-neon mb-2" />
+          <span className="text-[10px] text-gray-500 uppercase font-mono">Full Access</span>
         </div>
         <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex flex-col items-center">
-           <Zap className="w-5 h-5 text-purple-neon mb-2" />
-           <span className="text-[10px] text-gray-500 uppercase font-mono">6 Live Labs</span>
+          <Zap className="w-5 h-5 text-purple-neon mb-2" />
+          <span className="text-[10px] text-gray-500 uppercase font-mono">6 Live Labs</span>
         </div>
       </div>
 
-      <button 
+      <button
         onClick={handlePayment}
         disabled={loading || !scriptLoaded}
         className="w-full button-primary flex items-center justify-center gap-3 py-4 font-bold text-sm tracking-widest uppercase disabled:opacity-50"
@@ -154,7 +157,7 @@ export default function PaymentGate({ user, onSuccess }: PaymentGateProps) {
       {/* Coupon Section */}
       <div className="mt-8 w-full">
         {!showCoupon ? (
-          <button 
+          <button
             onClick={() => setShowCoupon(true)}
             className="text-[10px] text-gray-500 hover:text-cyan-neon uppercase tracking-[0.2em] transition-colors"
           >
@@ -163,14 +166,14 @@ export default function PaymentGate({ user, onSuccess }: PaymentGateProps) {
         ) : (
           <div className="flex flex-col gap-3">
             <div className="flex gap-2">
-              <input 
+              <input
                 type="text"
                 placeholder="ENTER CODE (E.G. Sybrai2026)"
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                 className="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-cyan-neon outline-none"
               />
-              <button 
+              <button
                 onClick={handleCoupon}
                 disabled={couponLoading}
                 className="px-6 bg-white/5 border border-white/10 hover:bg-white/10 rounded-xl text-[10px] font-bold uppercase tracking-widest text-white transition-all disabled:opacity-50"

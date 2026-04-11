@@ -8,12 +8,15 @@ const instance = new Razorpay({
 
 export async function POST(req: Request) {
   try {
-    const { amount, currency = "INR" } = await req.json();
+    const { amount, userId, currency = "INR" } = await req.json();
 
     const options = {
       amount: amount * 100, // Razorpay amount in paise (e.g., 50 INR * 100 = 5000 paise)
       currency,
       receipt: `receipt_${Math.random().toString(36).substring(7)}`,
+      notes: {
+        userId: userId,
+      },
     };
 
     const order = await instance.orders.create(options);

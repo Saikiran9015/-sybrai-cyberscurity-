@@ -15,7 +15,8 @@ const tutorials = [
     icon: <Shield className="text-cyan-neon w-6 h-6" />, 
     href: "/learn/labs/ethical-hacking",
     desc: "Foundations of reconnaissance, scanning, and penetration testing.",
-    color: "cyan"
+    color: "cyan",
+    price: 50
   },
   { 
     id: "network-security",
@@ -23,7 +24,8 @@ const tutorials = [
     icon: <Network className="text-purple-neon w-6 h-6" />, 
     href: "/learn/labs/network-security",
     desc: "Master SSL/TLS, VPN tunneling, and advanced firewall configuration.",
-    color: "purple"
+    color: "purple",
+    price: 50
   },
   { 
     id: "ai-cybersecurity",
@@ -31,7 +33,8 @@ const tutorials = [
     icon: <BookOpen className="text-cyan-neon w-6 h-6" />, 
     href: "/learn/labs/ai-cybersecurity",
     desc: "Implementing machine learning for threat detection and anomaly analysis.",
-    color: "cyan"
+    color: "cyan",
+    price: 50
   },
   { 
     id: "zero-day",
@@ -39,7 +42,8 @@ const tutorials = [
     icon: <Shield className="text-purple-neon w-6 h-6" />, 
     href: "/learn/labs/zero-day",
     desc: "Reverse engineering and vulnerability discovery in modern software.",
-    color: "purple"
+    color: "purple",
+    price: 50
   },
 ];
 
@@ -85,7 +89,10 @@ export default function Learn() {
       const orderRes = await fetch("/api/payment/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount }),
+        body: JSON.stringify({ 
+          amount,
+          userId: user.id || user._id 
+        }),
       });
       const orderData = await orderRes.json();
 
@@ -169,7 +176,7 @@ export default function Learn() {
                        const isLocked = !isPaid && !user?.isAdmin;
 
                        return (
-                         <div key={tut.id} onClick={() => isLocked && handleUnlock(499)} className="group relative">
+                         <div key={tut.id} onClick={() => isLocked && handleUnlock(tut.price)} className="group relative">
                            <motion.div
                              initial={{ opacity: 0, y: 20 }}
                              animate={{ opacity: 1, y: 0 }}
@@ -274,10 +281,10 @@ export default function Learn() {
                  <div className="absolute -right-4 -bottom-4 bg-purple-neon/10 w-24 h-24 rounded-full blur-2xl group-hover:bg-purple-neon/20 transition-all" />
                  <h4 className="text-sm font-orbitron font-bold text-white mb-2 uppercase tracking-tighter">Pro Academy License</h4>
                  <p className="text-[10px] text-gray-500 font-mono uppercase tracking-widest leading-relaxed mb-4">
-                    Unlock all current and future nodes for a one-time lifetime payment of ₹499.
+                    Unlock all current and future nodes for a one-time lifetime payment of ₹50.
                  </p>
                  <button 
-                    onClick={() => handleUnlock(499)}
+                    onClick={() => handleUnlock(50)}
                     disabled={unlockLoading}
                     className="text-[10px] text-purple-neon font-bold uppercase tracking-widest hover:underline flex items-center gap-1 disabled:opacity-50"
                  >
