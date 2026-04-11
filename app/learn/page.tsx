@@ -74,7 +74,7 @@ export default function Learn() {
     setShowAuth(false);
   };
 
-  const handleUnlock = async (amount: number = 499) => {
+  const handleUnlock = async (amount: number = 50) => {
     if (!user) {
       setShowAuth(true);
       return;
